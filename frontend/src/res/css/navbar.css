@@ -1,0 +1,33 @@
+.sidenav {
+    height: 100%;
+    width: 20%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(20, 204, 204);
+    overflow-x: hidden;
+    margin-bottom:20px;
+    padding-top: 20px;
+  }
+
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 22px;
+    color: white;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: #324960;
+    background-color: white;
+  }
+  
+  .sidenav h1 {
+      align: center;
+      color: white;
+  }
+
+  .logoutBtn {
+    margin-top: 100px;
+  }

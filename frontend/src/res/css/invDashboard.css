@@ -1,0 +1,18 @@
+.dashBack {
+    background-image: url('../images//dash-back.jpg');
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    margin-left: 20%;
+}
+
+.dash-btn {
+    --bs-btn-padding-y: .100rem;
+    --bs-btn-padding-x: .100rem; 
+    --bs-btn-font-size: .100rem;
+}
+
+.dash-btn-set {
+    margin-top: 100px;
+    margin-left: 20%;
+}
