@@ -5,9 +5,9 @@ export default function InvManagerNav() {
     return (
         <>
             <div className="sidenav">
-                <a href="">DASHBOARD</a>
-                <a href="">BUYER REQUESTS</a>
-                <a href="">INVENTORY</a>
+                <a href="/dashboard">DASHBOARD</a>
+                <a href="/allBuyerRequests">BUYER REQUESTS</a>
+                <a href="/allInventory">INVENTORY</a>
                 <a href="">ASSIGNED LIST</a>
                 <a className="logoutBtn" href="">LOGOUT</a>
             </div>
