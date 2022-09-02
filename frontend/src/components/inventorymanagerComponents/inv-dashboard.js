@@ -1,6 +1,6 @@
 import React from "react";
 import "../../res/css/invDashboard.css"
-import InvManagerNav from "../../navbars/inv-manager-nav";
+import InvManagerNav from "../navbars/inv-manager-nav";
 
 export default function Dashboard() {
     function directToInventory() {
