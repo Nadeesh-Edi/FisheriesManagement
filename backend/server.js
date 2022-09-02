@@ -5,6 +5,8 @@ import connectDB from './config/db.js'
 import cors from 'cors'
 import path from "path"
 
+// Routes
+import boatRoutes from './routes/boat.routes.js'
 import InvManagerRoutes from "./routes/inv.manage.routes.js"
 
 dotenv.config()
@@ -17,8 +19,9 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-
+// Calling Routes
 app.use("/invManager", InvManagerRoutes);
+app.use('/api/boats', boatRoutes);
 
 
 if (process.env.NODE_ENV === 'development') {
