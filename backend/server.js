@@ -3,6 +3,9 @@ import dotenv from 'dotenv'
 import morgan from 'morgan'
 import connectDB from './config/db.js'
 import cors from 'cors'
+import path from "path"
+
+import InvManagerRoutes from "./routes/inv.manage.routes.js"
 
 dotenv.config()
 
@@ -13,6 +16,9 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
+
+
+app.use("/invManager", InvManagerRoutes);
 
 
 if (process.env.NODE_ENV === 'development') {
