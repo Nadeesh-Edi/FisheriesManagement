@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import Boats from "../models/boat.model";
+import Boats from "../models/boat.model.js";
 
 // @desc    Fetch all boats
 // @route   GET /api/boats
@@ -33,18 +33,8 @@ const getBoatsById = asyncHandler(async (req, res) => {
   }
 });
 
-const boatById = asyncHandler(async (req, res) => {
-  const boatid = req.body.boatid;
 
-  try {
-    const boats = await Boats.findOne({ _id: req.body.boatid });
-    res.json(boats);
-  } catch (error) {
-    return res.status(400).json({ message: error });
-  }
-});
-
-const createBoats = asyncHandler(async (req, res) => {
+const registerBoat = asyncHandler(async (req, res) => {
   const {
     boatName,
     boatNo,
@@ -134,8 +124,7 @@ const updateBoat = asyncHandler(async (req, res) => {
 export {
   getAllBoats,
   getBoatsById,
-  boatById,
-  createBoats,
+  registerBoat,
   deleteBoat,
   updateBoat,
 };
