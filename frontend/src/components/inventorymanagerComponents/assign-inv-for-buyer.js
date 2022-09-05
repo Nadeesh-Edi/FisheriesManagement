@@ -2,7 +2,7 @@ import React from "react";
 import {useLocation, useSearchParams} from "react-router-dom"
 
 import "../../res/css/inv-pages.css"
-import InvManagerNav from "../../navbars/inv-manager-nav";
+import InvManagerNav from "../navbars/inv-manager-nav";
 
 export default function AssignInvForRequest() {
     const [request] = useSearchParams()

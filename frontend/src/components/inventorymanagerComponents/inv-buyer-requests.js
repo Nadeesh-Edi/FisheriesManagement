@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../../res/css/inv-pages.css"
-import InvManagerNav from "../../navbars/inv-manager-nav";
 import {Link, useNavigate,createSearchParams} from "react-router-dom"
+import InvManagerNav from "../navbars/inv-manager-nav";
 
 export default function BuyerRequests() {
     const [requests, setRequests] = useState([]);
