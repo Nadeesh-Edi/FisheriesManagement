@@ -1,0 +1,40 @@
+.vcard{
+    width: 900px;
+    height:900px;
+    float: right;
+    
+    flex: 50%;
+    top: 50px;
+    border: none;
+}
+
+.vlft{
+    width: 900px;
+    height:900px;
+    display: flex;
+    flex-direction: column;
+    float: right;
+    float: top;
+    padding-right: 100px;
+    position:absolute;
+  top: 50px;
+  left: 450px;
+   
+ } 
+
+ .pageo {
+    margin-left: 20%;
+    margin-bottom: 10px;
+    
+}
+
+ .h1o { 
+    margin:10px 0 10px 0;
+    font-size: 52px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0px #DC143C,
+      2px 2px 0px #DC143C,
+      3px 3px 0px #DC143C,
+      4px 4px 0px #DC143C;
+  }

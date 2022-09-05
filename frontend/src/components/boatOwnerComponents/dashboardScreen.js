@@ -29,7 +29,7 @@ export default function BODashboard() {
           <a class="button button-primary" href="">
             PROFILE
           </a>
-          <a class="button" href="">
+          <a class="button" href="/allboats">
             BOATS
           </a>
           <a class="button button-primary" href="">

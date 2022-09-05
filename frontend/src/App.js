@@ -10,6 +10,9 @@ import AssignInvForRequest from "./components/inventorymanagerComponents/assign-
 
 import BODashboard from "./components/boatOwnerComponents/dashboardScreen";
 import RegisterBoat from "./components/boatOwnerComponents/registerboatScreen";
+import AllBoats from "./components/boatOwnerComponents/allboatsScreen";
+
+
 function App() {
   return (
     <Router>
@@ -20,6 +23,7 @@ function App() {
         <Route path="/assignToBuy" element={<AssignInvForRequest />} />
         <Route path="/bownerdashboard" element={<BODashboard />} />
         <Route path="/registerboat" element={<RegisterBoat />} />
+        <Route path="/allboats" element={<AllBoats />} />
       </Routes>
     </Router>
   );
