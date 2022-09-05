@@ -7,7 +7,7 @@ import Dashboard from "./components/inventorymanagerComponents/inv-dashboard";
 import ViewAllInventory from "./components/inventorymanagerComponents/inv-all-inventory";
 import BuyerRequests from "./components/inventorymanagerComponents/inv-buyer-requests";
 import BODashboard from "./components/boatOwnerComponents/dashboardScreen";
-import RegisterBoatScreen from "./components/boatOwnerComponents/registerboatScreen";
+import RegisterBoat from "./components/boatOwnerComponents/registerboatScreen";
 function App() {
   return (
     <Router>
@@ -16,7 +16,7 @@ function App() {
         <Route path="/allBuyerRequests" element={<BuyerRequests />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/bownerdashboard" element={<BODashboard />} />
-        <Route path="/registerBoat" element={<RegisterBoatScreen />} />
+        <Route path="/registerboat" element={<RegisterBoat />} />
       </Routes>
     </Router>
   );

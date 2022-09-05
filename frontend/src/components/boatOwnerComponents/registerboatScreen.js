@@ -33,7 +33,7 @@ export default function RegisterBoat() {
       description,
     };
 
-    axios.post("http://localhost:9000/boats/reg", newBoat).then((willReg) => {
+    axios.post("http://localhost:9000/api/boats/registerboat", newBoat).then((willReg) => {
       if (willReg) {
         swal({
           title: "Success",
