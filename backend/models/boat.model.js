@@ -14,11 +14,11 @@ const boatSchema = mongoose.Schema({
             required: true
       },
       length: {
-            type: Number,
+            type: String,
             required: true
       },
       depth: {
-            type: Number,
+            type: String,
             required: true
       },
       engineRange: {
@@ -34,7 +34,7 @@ const boatSchema = mongoose.Schema({
             required: true
       },
       fishCapacity: {
-            type: Number,
+            type: String,
             required: true
       },
       fuelCapacity: {

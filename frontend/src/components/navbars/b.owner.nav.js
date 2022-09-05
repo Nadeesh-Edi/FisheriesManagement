@@ -1,6 +1,7 @@
 import React from "react";
 import "../../res/css/navbar.css";
 
+
 export default function BOwnerNav() {
   return (
     <>
