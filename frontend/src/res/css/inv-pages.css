@@ -2,3 +2,13 @@
     margin-left: 20%;
     margin-bottom: 10px;
 }
+
+.purple-btn {
+    background-color: blueviolet;
+    color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border: none;
+}

@@ -20,7 +20,7 @@ app.use(cors())
 app.use(express.json())
 
 // Calling Routes
-app.use("/invManager", InvManagerRoutes);
+app.use("/api/invManager", InvManagerRoutes);
 app.use('/api/boats', boatRoutes);
 
 
