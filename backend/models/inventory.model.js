@@ -28,6 +28,6 @@ const inventorySchema = mongoose.Schema(
     }
 )
 
-const Inventory = mongoose.model("Inventory", inventorySchema);
+const Inventories = mongoose.model("Inventories", inventorySchema);
 
-export default Inventory;
+export default Inventories;
