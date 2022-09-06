@@ -38,3 +38,25 @@
       3px 3px 0px #DC143C,
       4px 4px 0px #DC143C;
   }
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+  }
+  
+  a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .previous {
+    background-color:white;
+    color: black;
+  }
+  
+
+  
+  .round {
+    border-radius: 50%;
+  }

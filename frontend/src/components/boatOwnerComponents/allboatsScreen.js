@@ -85,10 +85,10 @@ export default function AllBoats(){
     return(
         <>
         <BOwnerNav />
-        <div className="vlft"><div className="vcard">
+        <div className="container">
 
         <br/><br/>
-        <h3><center> All Boats </center></h3>
+        <h1 className="h1o"><center> All Boats </center></h1>
         <br/><br/> 
 
 
@@ -101,7 +101,7 @@ export default function AllBoats(){
         <div className="row g-3">
         <div className="col-sm-7">
         <i className="fas fa-search" style={{padding: "30px"}} aria-hidden="true"></i>
-        <input className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search Users" aria-label="Search" 
+        <input className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search Boats" aria-label="Search" 
         
         onChange={(e) => {
             setsearchTerm(e.target.value)
@@ -147,7 +147,7 @@ export default function AllBoats(){
                                     <td ><center> {f.boatNo} </center></td>
                                     <td ><center> {f.boatType} </center></td>
                                     
-                                    <td > <Link to={"/view/" + f._id} ><Button type="button" class="btn btn-primary" > View Details </Button></Link></td>
+                                    <td > <Link to={"/boatdetails/" + f._id} ><Button type="button" class="btn btn-primary" > View Details </Button></Link></td>
                                     <td > <Link to={"/update/" + f._id} ><Button type="button" class="btn btn-primary" > Update Boat </Button></Link></td>
                                     <td > <Button type="button" class="btn btn-outline-danger" onClick={() =>  deleteBoat(f._id)}> Delete </Button></td>
                                         </tr>
@@ -158,7 +158,6 @@ export default function AllBoats(){
                     </tbody>
                     </table>
                 </table>
-           </div>
            </div>
         </>
 
