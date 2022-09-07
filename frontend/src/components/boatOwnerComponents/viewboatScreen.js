@@ -92,7 +92,7 @@ export default function BoatDetails() {
       <div className="vcard">
         <br />
         <br />
-        <a href="/allboats" class="previous">&laquo;</a>
+        
         <h1 className="h1o">
           <center> Boat Details </center>
         </h1>
