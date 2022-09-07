@@ -62,9 +62,9 @@ export default function ViewAllInventory() {
             <div className="page">
                 <h1 className="mx-5 text-body mb-5 pt-5">INVENTORY</h1>
                 <br></br>
-                <div className="shadow-lg p-3 mb-5 mx-5 bg-body rounded">
+                <div className="shadow-lg p-3 mb-5 mx-5 bg-body rounded fs-5">
                     <form>
-                        <input className="rounded-pill ps-2 mx-5" type="text" placeholder="Search Boat Id"
+                        <input className="rounded-pill ps-2 mx-2 fs-5" type="text" placeholder="Search Boat Id"
                         onChange={(e) => {
                             setBoatId(e.target.value);
                         }}></input>
@@ -81,7 +81,7 @@ export default function ViewAllInventory() {
                 </div>
                 <table className="table table-striped mx-5">
                     <thead>
-                        <tr className="table-dark">
+                        <tr className="table-dark fs-6">
                             <th>INVENTORY ID</th>
                             <th><center>BOAT ID</center></th>
                             <th><center>OWNER NAME</center></th>
@@ -91,7 +91,7 @@ export default function ViewAllInventory() {
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="fs-6">
                         {
                             inventory.filter(val => {
                                 if(!filterClicked) {

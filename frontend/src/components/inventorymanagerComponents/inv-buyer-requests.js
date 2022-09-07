@@ -70,7 +70,7 @@ export default function BuyerRequests() {
                 </div>
                 <table className="table table-striped mx-5">
                     <thead>
-                        <tr className="table-dark">
+                        <tr className="table-dark fs-6">
                             <th>REQUEST ID</th>
                             <th><center>REQUESTER</center></th>
                             <th><center>TYPE OF FISH</center></th>
@@ -78,7 +78,7 @@ export default function BuyerRequests() {
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="fs-6">
                         {
                             requests.filter(val => {
                                 if (!searchClick) {
