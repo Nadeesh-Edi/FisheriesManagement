@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 import BOwnerNav from "../navbars/b.owner.nav";
 import swal from "sweetalert2";
 import "../../res/css/regboat.css";
 
-export default function RegisterBoat() {
+
+
+export default function UpdateBoat() {
+  const { id } = useParams();
+
   const [boatName, setBoatName] = useState("");
   const [boatNo, setBoatNo] = useState();
   const [boatType, setBoatType] = useState("");
@@ -17,49 +22,79 @@ export default function RegisterBoat() {
   const [fuelCapacity, setFuelCapacity] = useState("");
   const [description, setDescription] = useState("");
 
-  function sendData(e) {
+  const [boats, setBoat] = useState([]);
+
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:9000/api/boats/${id}`)
+      .then((res) => {
+        var boat = res.data;
+
+        setBoat(boat);
+
+        setBoatName(boat.boatName);
+        setBoatNo(boat.boatNo);
+        setBoatType(boat.boatType);
+        setLength (boat.length);
+        setDepth(boat.depth);
+        setEngineRange(boat.engineRange);
+        setSpeed(boat.speed);
+        setMaxMembers(boat.maxMembers);
+        setFishCapacity(boat.fishCapacity);
+        setFuelCapacity(boat.fuelCapacity);
+        setDescription(boat.description);
+
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log(id);
+      });
+  }, []);
+
+  function updateData(e) {
     e.preventDefault();
 
     const newBoat = {
-      boatName,
-      boatNo,
-      boatType,
-      length,
-      depth,
-      engineRange,
-      speed,
-      maxMembers,
-      fishCapacity,
-      fuelCapacity,
-      description,
+        boatName,
+        boatNo,
+        boatType,
+        length,
+        depth,
+        engineRange,
+        speed,
+        maxMembers,
+        fishCapacity,
+        fuelCapacity,
+        description,
     };
 
-    axios
-      .post("http://localhost:9000/api/boats/registerboat", newBoat)
-      .then((willReg) => {
-        if (willReg) {
+    axios.put(`http://localhost:9000/api/boats/${id}`, newBoat)
+      .then((willUpdate) => {
+        if(willUpdate){
           swal({
             title: "Success",
-            text: "Boat Successfully Registered",
-            icon: "success",
-            type: "success",
-          }).then(function () {
-            window.location.href = "/allboats";
-          });
-        } else {
-          swal("Register Boat Failed!");
+            text: "Boat Details Successfully Updated",
+            icon:  "success",
+            type: "success"
+          }).then(function(){
+            window.location.href="/allboats";
+          })
+        } else{
+          swal("Update Boat Details Failed!");
         }
-      });
+      })
   }
+
   return (
     <>
-      <BOwnerNav />
+    <BOwnerNav />
         <div className="container">
           <div className="pageo">
-          <form onSubmit={sendData}>
+          <form onSubmit={updateData}>
             <br />
             <center>
-              <h1 className="h1o">Register Boat</h1>
+              <h1 className="h1o">Update Boat Details</h1>
             </center>
             <br />
             <div class="form-group">
@@ -68,7 +103,7 @@ export default function RegisterBoat() {
                 type="text"
                 class="form-control  border-1 shadow-sm px-4"
                 id="boatname"
-                placeholder="Enter Boat Name"
+                defaultValue={boats.boatName}
                 onChange={(e) => {
                   setBoatName(e.target.value);
                 }}
@@ -82,7 +117,7 @@ export default function RegisterBoat() {
                 type="text"
                 class="form-control  border-1 shadow-sm px-4"
                 id="boatno"
-                placeholder="Enter Boat Number"
+                defaultValue={boats.boatNo}
                 onChange={(e) => {
                   setBoatNo(e.target.value);
                 }}
@@ -92,20 +127,16 @@ export default function RegisterBoat() {
             <br />
             <div class="form-group">
               <label for="gender">Boat Type</label>
-              <select
+              <input
                 type="text"
                 class="form-control  border-1 shadow-sm px-4"
-                id="boattype"
+                id="boatType"
+                defaultValue={boats.boatType}
                 onChange={(e) => {
                   setBoatType(e.target.value);
                 }}
-                required
-              >
-                <option selected>Select Boat Type</option>
-                <option value="Multi-Day">Multi Day Vessel</option>
-                <option value="Single-Day">One Day Vessel</option>
-                <option value="Small">Small Vessel</option>
-              </select>
+                readOnly
+              />
             </div>
             <br />
             <div class="form-group">
@@ -116,9 +147,9 @@ export default function RegisterBoat() {
                   <input
                     id="Length"
                     type="text"
-                    placeholder="Enter Boat Length"
                     class="form-control  border-1 shadow-sm px-4"
                     value={length}
+                    defaultValue={boats.length}
                     onChange={(e) => setLength(e.target.value)}
                     required
                   />
@@ -134,9 +165,9 @@ export default function RegisterBoat() {
                   <input
                     id="Depth"
                     type="text"
-                    placeholder="Enter Boat Depth"
                     class="form-control  border-1 shadow-sm px-4"
                     value={depth}
+                    defaultValue={boats.depth}
                     onChange={(e) => setDepth(e.target.value)}
                     required
                   />
@@ -157,9 +188,9 @@ export default function RegisterBoat() {
                   <input
                     id="Engine Range"
                     type="number"
-                    placeholder="Enter Engine Range"
                     class="form-control  border-1 shadow-sm px-4 text-primary"
                     value={engineRange}
+                    defaultValue={boats.engineRange}
                     onChange={(e) => setEngineRange(e.target.value)}
                     required
                   />
@@ -175,9 +206,9 @@ export default function RegisterBoat() {
                   <input
                     id="Speed"
                     type="text"
-                    placeholder="Enter Max Boat Speed"
                     class="form-control  border-1 shadow-sm px-4 text-primary"
                     value={speed}
+                    defaultValue={boats.speed}
                     onChange={(e) => setSpeed(e.target.value)}
                     required
                   />
@@ -195,7 +226,7 @@ export default function RegisterBoat() {
                 type="number"
                 class="form-control  border-1 shadow-sm px-4"
                 id="maxmembers"
-                placeholder="Enter Max Members"
+                defaultValue={boats.maxMembers}
                 onChange={(e) => {
                   setMaxMembers(e.target.value);
                 }}
@@ -210,7 +241,7 @@ export default function RegisterBoat() {
                 type="number"
                 class="form-control border-1 shadow-sm px-4"
                 id="fishcapacity"
-                placeholder="Enter Fish Hold Capacity"
+                defaultValue={boats.fishCapacity}
                 onChange={(e) => {
                   setFishCapacity(e.target.value);
                 }}
@@ -229,7 +260,7 @@ export default function RegisterBoat() {
                   type="number"
                   class="form-control border-1 shadow-sm px-4"
                   id="fuelcapacity"
-                  placeholder="Enter Fuel Capacity"
+                  defaultValue={boats.fuelCapacity}
                   onChange={(e) => {
                     setFuelCapacity(e.target.value);
                   }}
@@ -247,7 +278,7 @@ export default function RegisterBoat() {
                 type="text"
                 class="form-control  border-1 shadow-sm px-4"
                 id="description"
-                placeholder="Enter Description"
+                defaultValue={boats.description}
                 onChange={(e) => {
                   setDescription(e.target.value);
                 }}
@@ -257,7 +288,7 @@ export default function RegisterBoat() {
             <br />
 
             <button type="submit" class="btn btn-primary">
-              Submit
+              Update
             </button>
             <br />
             <br />
