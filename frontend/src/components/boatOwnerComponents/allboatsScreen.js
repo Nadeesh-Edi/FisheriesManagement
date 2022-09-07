@@ -97,7 +97,7 @@ export default function AllBoats() {
             <div class="table-title">
               <div class="row">
                 <div class="col-sm-4">
-                  <h2>All Registered Boat Details</h2>
+                  <h2 className="h2o">All Registered Boat Details</h2>
                 </div>
                 <div class="col-sm-8">
                   <a href="/registerboat" class="btn btn-primary">
@@ -181,7 +181,7 @@ export default function AllBoats() {
                         </td>
                         <td></td>
 
-                        <td>
+                        <td className="otd">
                           <a class="delete" onClick={() => deleteBoat(f._id)}>
                             <Delete /> Delete
                           </a>
