@@ -8,6 +8,9 @@ import path from "path"
 // Routes
 import boatRoutes from './routes/boat.routes.js'
 import InvManagerRoutes from "./routes/inv.manage.routes.js"
+import OrderRoutes from './routes/OrderRoutes.js'
+import BillRoutes from './routes/BillRoutes.js'
+import FeedbackRoutes from './routes/FeedbackRoutes.js'
 
 dotenv.config()
 
@@ -22,6 +25,9 @@ app.use(express.json())
 // Calling Routes
 app.use("/invManager", InvManagerRoutes);
 app.use('/api/boats', boatRoutes);
+app.use('/order',OrderRoutes);
+app.use('/bill',BillRoutes);
+app.use('/feedback',FeedbackRoutes);
 
 
 if (process.env.NODE_ENV === 'development') {
