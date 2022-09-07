@@ -52,7 +52,7 @@
 		margin: -20px -25px 10px;
 		border-radius: 3px 3px 0 0;
     }
-    .table-title h2 {
+    .h2o {
 		margin: 5px 0 0;
 		font-size: 24px;
 	}
@@ -79,21 +79,21 @@
 		vertical-align: middle;
     }
 
-	table.table td a {
+	.otd a {
 		font-weight: bold;
 		color: #566787;
 		display: inline-block;
 		text-decoration: none;
 	}
-	table.table td a:hover {
+	.otd a:hover {
 		color: #2196F3;
 	}
 
-    .table.table td a {
+    .otd a {
         float: right;
 		margin-left: 0px;
     }
-    table.table td a.delete {
+    .otd a.delete {
         color: #F44336;
     }
 
