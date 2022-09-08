@@ -24,40 +24,6 @@ export default function BoatDetails() {
 
   const [boats, setBoatDetails] = useState([]);
 
-  const generatePDF = (tickets) => {
-    const doc = new jspdf();
-    const date = Date().split(" ");
-    const dateStr = date[1] + "-" + date[2] + "-" + date[3];
-    const tableColumn = ["Specifications", "Boat Details"];
-    const tableRows = ["Boat Name"];
-
-    tickets.map((ticket) => {
-      const ticketData = [
-        ticket.boatName,
-        ticket.boatNo,
-        ticket.boatType,
-        ticket.length,
-        ticket.depth,
-        ticket.engineRange,
-        ticket.speed,
-        ticket.maxMembers,
-        ticket.fishCapacity,
-        ticket.fuelCapacity,
-        ticket.description,
-      ];
-      tableRows.push(ticketData);
-    });
-    doc.text("Boat Details Report", 14, 15).setFontSize(12);
-    doc.text(`Report Genarated Date - ${dateStr} `, 14, 23);
-    // doc.addImage(img, 'JPEG', 170, 8, 22, 22);
-    // right down width height
-    doc.autoTable(tableColumn, tableRows, {
-      styles: { fontSize: 8 },
-      startY: 35,
-    });
-    doc.save(`Boat_Details_Report.pdf`);
-  };
-  
 
   useEffect(() => {
     axios
@@ -97,20 +63,7 @@ export default function BoatDetails() {
           <center> Boat Details </center>
         </h1>
         <br />
-        <br />
-
-        <Button
-          style={{ padding: "Right" }}
-          type="button"
-          class="btn btn-outline-warning"
-          onClick={() => generatePDF(boats)}
-        >
-          Generate Report
-        </Button>
-
-        <br />
-        <br />
-
+        
         <table className="table table-bordered">
           <table className="table table-hover">
             <thead>
@@ -204,7 +157,7 @@ export default function BoatDetails() {
                   <center> {boats.fuelCapacity} L</center>
                 </td>
               </tr>
-            </tbody>
+            </tbody>                    
           </table>
         </table>        
         <div class="form-group">

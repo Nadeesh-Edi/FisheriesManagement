@@ -2,13 +2,6 @@ import React from "react";
 import "../../res/css/b.ownerDashboard.css";
 
 export default function BODashboard() {
-  // function directToInventory() {
-  //   window.location.href = "/allInventory";
-  // }
-
-  // function directToBuyerRequests() {
-  //   window.location.href = "/allBuyerRequests";
-  // }
 
   return (
     <>

@@ -49,11 +49,33 @@ export default function AllBoats() {
     const doc = new jspdf();
     const date = Date().split(" ");
     const dateStr = date[1] + "-" + date[2] + "-" + date[3];
-    const tableColumn = ["Boat Name", "Boat Number", "Boat Type"];
+    const tableColumn = [
+      "Boat Name",
+      "Boat No",
+      "Boat Type",
+      "Length",
+      "Depth",
+      "Engine Range",
+      "Max Speed",
+      "Max Crew Members",
+      "Fish Hold Capacoty",
+      "Fuel Capacity",
+    ];
     const tableRows = [];
 
     tickets.map((ticket) => {
-      const ticketData = [ticket.boatName, ticket.boatNo, ticket.boatType];
+      const ticketData = [
+        ticket.boatName,
+        ticket.boatNo,
+        ticket.boatType,
+        ticket.length,
+        ticket.depth,
+        ticket.engineRange,
+        ticket.speed,
+        ticket.maxMembers,
+        ticket.fishCapacity,
+        ticket.fuelCapacity,
+      ];
       tableRows.push(ticketData);
     });
     doc.text("Boat Details Report", 14, 15).setFontSize(12);
@@ -85,126 +107,170 @@ export default function AllBoats() {
     <>
       <BOwnerNav />
       <div className="obody">
-      <div className="container">
-        <div className="pageo">
-          <br />
-          <br />
-          <h1 className="h1o">
-            <center> All Boats </center>
-          </h1>
-          <br />
+        <div className="container">
+          <div className="pageo">
+            <br />
+            <br />
+            <h1 className="h1o">
+              <center> All Boats </center>
+            </h1>
+            <br />
 
-          <div class="table-wrapper">
-            <div class="table-title">
-              <div class="row">
-                <div class="col-sm-4">
-                  <h2 className="h2o">All Registered Boat Details</h2>
-                </div>
-                <div class="col-sm-8">
-                  <a href="/registerboat" class="btn btn-primary">
-                    <AddIcon /> Add New
-                  </a>
-                  <a class="btn btn-info" onClick={() => generatePDF(boats)}>
-                    <PDF /> Generate PDF
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="table-filter">
-              <div class="row">
-                <div class="col-sm-3">
-                  <h5>Boat Count : {boats.length}</h5>
-                </div>
-                <div class="col-sm-9">
-                  <div class="filter-group">
-                    <input
-                      class="form-control mr-sm-2"
-                      type="search"
-                      placeholder="Search"
-                      aria-label="Search"
-                      onChange={(e) => {
-                        setsearchTerm(e.target.value);
-                      }}
-                    />
+            <div class="table-wrapper">
+              <div class="table-title">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <h2 className="h2o">All Registered Boat Details</h2>
+                  </div>
+                  <div class="col-sm-8">
+                    <a href="/registerboat" class="btn btn-primary">
+                      <AddIcon /> Add New
+                    </a>
+                    <a class="btn btn-info" onClick={() => generatePDF(boats)}>
+                      <PDF /> Generate PDF
+                    </a>
                   </div>
                 </div>
               </div>
+              <div class="table-filter">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h5>Boat Count : {boats.length}</h5>
+                  </div>
+                  <div class="col-sm-9">
+                    <div class="filter-group">
+                      <input
+                        class="form-control mr-sm-2"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                        onChange={(e) => {
+                          setsearchTerm(e.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <br />
+
+              <table className="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>
+                      <center> Boat Name </center>
+                    </th>
+                    <th>
+                      <center> Boat Type </center>
+                    </th>
+                    <th>
+                      <center> Engine Range </center>
+                    </th>
+                    <th>
+                      <center> Max Members </center>
+                    </th>
+                    <th>
+                      <center> Fish Hold Capacity </center>
+                    </th>
+                    <th>
+                      <center> View </center>
+                    </th>
+                    <th>
+                      <center> Edit </center>
+                    </th>
+                    <th>
+                      <center> Delete </center>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {boats
+                    .filter((val) => {
+                      if (searchTerm === "") {
+                        return val;
+                      } else if (
+                        val.boatName
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase()) ||
+                        val.boatType
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase()) ||
+                        val.engineRange
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase()) ||
+                        val.maxMembers
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase()) ||
+                        val.fishCapacity
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase())
+                      ) {
+                        return val;
+                      }
+                    })
+                    .map(function (f) {
+                      return (
+                        <tr>
+                          <td>
+                            <center> {f.boatName} </center>
+                          </td>
+                          <td>
+                            <center> {f.boatType} </center>
+                          </td>
+                          <td>
+                            <center> {f.engineRange} </center>
+                          </td>
+                          <td>
+                            <center> {f.maxMembers} </center>
+                          </td>
+                          <td>
+                            <center> {f.fishCapacity} </center>
+                          </td>
+
+                          <td>
+                            {" "}
+                            <Link to={"/boatdetails/" + f._id}>
+                              <Button
+                                type="button"
+                                class="btn btn-outline-secondary"
+                              >
+                                {" "}
+                                <View />{" "}
+                              </Button>
+                            </Link>
+                          </td>
+                          <td>
+                            {" "}
+                            <Link to={"/updateboat/" + f._id}>
+                              <Button
+                                type="button"
+                                class="btn btn-outline-primary"
+                              >
+                                {" "}
+                                <Edit />{" "}
+                              </Button>
+                            </Link>
+                          </td>
+                          <td>
+                            {" "}
+                            <Button
+                              type="button"
+                              class="btn btn-outline-danger"
+                              onClick={() => deleteBoat(f._id)}
+                            >
+                              {" "}
+                              <Delete />{" "}
+                            </Button>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table>
             </div>
-
-            <br />
-
-            <table className="table table-striped table-hover">
-              <thead>
-                <tr>
-                  <th>
-                    <center> Boat Name </center>
-                  </th>
-                  <th>
-                    <center> Boat Number </center>
-                  </th>
-                  <th>
-                    <center> Boat Type </center>
-                  </th>
-                  <th></th>
-                  <th><center> Actions </center></th>
-                </tr>
-              </thead>
-              <tbody>
-                {boats
-                  .filter((val) => {
-                    if (searchTerm === "") {
-                      return val;
-                    } else if (
-                      val.boatName
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ||
-                      val.boatNo
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ||
-                      val.boatType
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase())
-                    ) {
-                      return val;
-                    }
-                  })
-                  .map(function (f) {
-                    return (
-                      <tr>
-                        <td>
-                          <center> {f.boatName} </center>
-                        </td>
-                        <td>
-                          <center> {f.boatNo} </center>
-                        </td>
-                        <td>
-                          <center> {f.boatType} </center>
-                        </td>
-                        <td></td>
-
-                        <td className="otd">
-                          <a class="delete" onClick={() => deleteBoat(f._id)}>
-                            <Delete /> Delete
-                          </a>
-                          <Link to={"/updateboat/" + f._id}>
-                            <a class="btn btn-primary">
-                              <Edit /> Edit
-                            </a>
-                          </Link>
-                          <Link to={"/boatdetails/" + f._id}>
-                            <a>
-                              <View /> View
-                            </a>
-                          </Link>
-                        </td>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-            </table>
           </div>
         </div>
-      </div>
       </div>
     </>
   );
