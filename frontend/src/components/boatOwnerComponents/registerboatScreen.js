@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import BOwnerNav from "../navbars/b.owner.nav";
-import swal from "sweetalert2";
+import swal from "sweetalert";
 import "../../res/css/regboat.css";
 
 export default function RegisterBoat() {
@@ -31,8 +31,8 @@ export default function RegisterBoat() {
       maxMembers,
       fishCapacity,
       fuelCapacity,
-      description,
-    };
+      description
+    }
 
     axios
       .post("http://localhost:9000/api/boats/registerboat", newBoat)
