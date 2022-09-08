@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import BOwnerNav from "../navbars/b.owner.nav";
-import swal from "sweetalert2";
+import swal from "sweetalert";
 import "../../res/css/regboat.css";
 
 

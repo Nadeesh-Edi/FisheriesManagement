@@ -84,6 +84,7 @@ export default function AllBoats() {
   return (
     <>
       <BOwnerNav />
+      <div className="obody">
       <div className="container">
         <div className="pageo">
           <br />
@@ -203,6 +204,7 @@ export default function AllBoats() {
             </table>
           </div>
         </div>
+      </div>
       </div>
     </>
   );
