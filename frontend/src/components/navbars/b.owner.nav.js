@@ -1,5 +1,6 @@
 import React from "react";
 import "../../res/css/onavbar.css";
+import logo from '../navbars/logo.png'
 
 
 export default function BOwnerNav() {
@@ -9,7 +10,7 @@ export default function BOwnerNav() {
 
 <div class="wrapper">
     <div class="sidebar">
-        <h2>SEA LINE</h2>
+    <center><img  src={logo} style={{ width: '170px', height: '170px' }}></img></center>
         <ul><br/>
             <li><a href="/bownerdashboard">DASHBOARD</a></li>
             <li><a href="#">PROFILE</a></li>

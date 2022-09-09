@@ -86,7 +86,7 @@ export default function BoatDetails() {
                   <center> {boats.boatName}</center>
                 </td>
               </tr>
-              <tr class="table-info">
+              <tr class="table-secondary">
                 <td>
                   <center> Boat Number </center>
                 </td>
@@ -102,7 +102,7 @@ export default function BoatDetails() {
                   <center> {boats.boatType}</center>
                 </td>
               </tr>
-              <tr class="table-info">
+              <tr class="table-secondary">
                 <td>
                   <center> Length </center>
                 </td>
@@ -118,7 +118,7 @@ export default function BoatDetails() {
                   <center> {boats.depth} m</center>
                 </td>
               </tr>
-              <tr class="table-info">
+              <tr class="table-secondary">
                 <td>
                   <center> Engine Range </center>
                 </td>
@@ -134,7 +134,7 @@ export default function BoatDetails() {
                   <center> {boats.speed} knots</center>
                 </td>
               </tr>
-              <tr class="table-info">
+              <tr class="table-secondary">
                 <td>
                   <center> Max Crew Members </center>
                 </td>
@@ -150,7 +150,7 @@ export default function BoatDetails() {
                   <center> {boats.fishCapacity} m³</center>
                 </td>
               </tr>
-              <tr class="table-info">
+              <tr class="table-secondary">
                 <td>
                   <center> Fuel Capacity </center>
                 </td>

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import jspdf from "jspdf";
 import "jspdf-autotable";
+import img from '../navbars/logo.png';
 import BOwnerNav from "../navbars/b.owner.nav";
 import AddIcon from "@material-ui/icons/AddCircleOutline";
 import PDF from "@material-ui/icons/PictureAsPdfRounded";
@@ -78,15 +79,15 @@ export default function AllBoats() {
       ];
       tableRows.push(ticketData);
     });
-    doc.text("Boat Details Report", 14, 15).setFontSize(12);
+    doc.text("All Boat Details Report", 14, 15).setFontSize(12);
     doc.text(`Report Genarated Date - ${dateStr} `, 14, 23);
-    // doc.addImage(img, 'JPEG', 170, 8, 22, 22);
+    doc.addImage(img, 'JPEG', 170, 8, 22, 22);
     // right down width height
     doc.autoTable(tableColumn, tableRows, {
       styles: { fontSize: 8 },
       startY: 35,
     });
-    doc.save(`Boat_Details_Report.pdf`);
+    doc.save(`All_Boat_Details_Report.pdf`);
   };
 
   useEffect(() => {
@@ -165,13 +166,10 @@ export default function AllBoats() {
                       <center> Boat Type </center>
                     </th>
                     <th>
-                      <center> Engine Range </center>
+                      <center> Engine Range (hp) </center>
                     </th>
                     <th>
-                      <center> Max Members </center>
-                    </th>
-                    <th>
-                      <center> Fish Hold Capacity </center>
+                      <center> Fish Hold Capacity (m³) </center>
                     </th>
                     <th>
                       <center> View </center>
@@ -196,12 +194,9 @@ export default function AllBoats() {
                         val.boatType
                           .toLowerCase()
                           .includes(searchTerm.toLowerCase()) ||
-                        val.engineRange
-                          .toLowerCase()
-                          .includes(searchTerm.toLowerCase()) ||
-                        val.maxMembers
-                          .toLowerCase()
-                          .includes(searchTerm.toLowerCase()) ||
+                        // val.engineRange
+                        //   .toNumbers()
+                        //   .includes(searchTerm.toNumbers()) ||
                         val.fishCapacity
                           .toLowerCase()
                           .includes(searchTerm.toLowerCase())
@@ -220,9 +215,6 @@ export default function AllBoats() {
                           </td>
                           <td>
                             <center> {f.engineRange} </center>
-                          </td>
-                          <td>
-                            <center> {f.maxMembers} </center>
                           </td>
                           <td>
                             <center> {f.fishCapacity} </center>

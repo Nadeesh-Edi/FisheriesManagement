@@ -75,6 +75,10 @@ export default function RegisterBoat() {
                   }}
                   required
                 />
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                Also Enter the brand name of the boat in parentheses. Eg:- Kasun 2
+                  (Hammerhead F2000)
+                </small>
               </div>
               <br />
               <div class="form-group">
