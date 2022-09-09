@@ -5,9 +5,8 @@ import "../../res/css/inv-pages.css"
 import InvManagerNav from "../navbars/inv-manager-nav";
 
 export default function AssignInvForRequest() {
-    const [request] = useSearchParams()
-
-    console.log("Location ==========" +request.get("fishType"));
+    const reqData = useLocation();
+    const request = reqData.state.req;
 
     return (
         <>
@@ -18,18 +17,18 @@ export default function AssignInvForRequest() {
                 <div className="shadow-lg p-3 mb-5 mx-5 bg-body rounded">
                     <div className="row">
                         <div className="col-6">
-                            <div>Request Id:  {request.get("id")}</div>
+                            <div>Request Id:  {request.OrderNo}</div>
                         </div>
                         <div className="col-6">
-                            <div>Requester: {request.get("requester")}</div>
+                            <div>Requester: {request.Name}</div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-6">
-                            <div>Type of Fish: {request.get("fishType")}</div>
+                            <div>Type of Fish: {request.product}</div>
                         </div>
                         <div className="col-6">
-                            <div>Quantity: {request.get("qty")}</div>
+                            <div>Quantity: {request.qty}</div>
                         </div>
                     </div>
                 </div>

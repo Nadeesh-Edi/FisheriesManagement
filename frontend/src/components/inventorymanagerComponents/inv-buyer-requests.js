@@ -26,15 +26,9 @@ export default function BuyerRequests() {
     }
 
     function assignToBuy(req) {
-        navigate({
-            pathname: '/assignToBuy',
-            search: createSearchParams({
-                id: req._id,
-                requester: req.requester,
-                fishType: req.fishType,
-                qty: req.qty
-            }).toString()
-        }, { state: {req}});
+        navigate('/assignToBuy', {
+            state: {req}
+        });
     }
 
     useEffect(() => {
@@ -84,19 +78,25 @@ export default function BuyerRequests() {
                                 if (!searchClick) {
                                     return val;
                                 }
+                                else if(requestId.length === 0 && fishType.length === 0) {
+                                    return val;
+                                }
+                                else if(requestId.length !== 0 && fishType.length !== 0) {
+                                    return val.OrderNo.toLowerCase().includes(requestId.toLowerCase()) && val.product.toLowerCase().includes(fishType.toLowerCase())
+                                }
                                 else {
                                     if (requestId) {
-                                        return val._id.toLowerCase().includes(requestId.toLowerCase())
+                                        return val.OrderNo.toLowerCase().includes(requestId.toLowerCase())
                                     }
                                     if (fishType) {
-                                        return val.fishType.toLowerCase().includes(fishType.toLowerCase())
+                                        return val.product.toLowerCase().includes(fishType.toLowerCase())
                                     }
                                 }
                             }).map(function(f) {
                                 return <tr className="text-start">
-                                    <td > {f._id} </td>
-                                    <td ><center> {f.requester} </center></td>
-                                    <td ><center> {f.fishType} </center></td>
+                                    <td > {f.OrderNo} </td>
+                                    <td ><center> {f.Name} </center></td>
+                                    <td ><center> {f.product} </center></td>
                                     <td ><center> {f.qty} </center></td>
                                     <td>
                                         <button className="purple-btn rounded-pill" onClick={() => {assignToBuy(f)}}>ASSIGN</button>

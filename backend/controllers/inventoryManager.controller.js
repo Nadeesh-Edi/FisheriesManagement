@@ -3,6 +3,7 @@ import express from "express";
 import Inventories from "../models/inventory.model.js";
 import BuyerRequests from "../models/buyerRequest.model.js";
 import {ObjectId} from 'mongodb';
+import orderDet from "../models/OrderModel.js";
 const router = express.Router();
 
 // Get all inventory
@@ -41,10 +42,14 @@ const postInventory = asyncHandler(async (req, res) => {
 })
 
 // Get all buyer requests
-const getAllBuyRequests = asyncHandler(async (req, res) => {
-    const requests = await BuyerRequests.find({});
+const getAllBuyRequests = asyncHandler(async (req,res) => {
+    const requests = await orderDet.find({});
     res.json(requests);
 })
+// const getAllBuyRequests = asyncHandler(async (req, res) => {
+//     const requests = await BuyerRequests.find({});
+//     res.json(requests);
+// })
 
 // Create Buyer Request
 const postBuyerRequest = asyncHandler(async (req,res) => {
