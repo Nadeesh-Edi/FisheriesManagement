@@ -54,8 +54,9 @@ export default function BoatDetails() {
   return (
     <>
       <BOwnerNav />
-      <div className="vlft">
-      <div className="vcard">
+      <div className="obody">
+        <div className="container">
+          <div className="pageo">
         <br />
         <br />
         
@@ -174,7 +175,7 @@ export default function BoatDetails() {
           />
         </div>
         <br/><br/>
-
+      </div>
       </div>
       </div>
     </>

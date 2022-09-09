@@ -11,11 +11,11 @@ export default function BODashboard() {
             logo
           </a>
           <nav>
-            <a id="pageheader">DASHBOARD</a>
+            <a id="pageheader">BOAT OWNER DASHBOARD</a>
           </nav>
         </header>
         <header class="hero-header">
-          <h1 class="hero-title">Web Site Name</h1>
+          <h1 class="hero-title">SEA LINE</h1>
           <h4>Sri Lanka's one and only Fisheries Management Website.</h4>
         </header>
         <footer class="hero-footer">

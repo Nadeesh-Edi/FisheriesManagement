@@ -126,7 +126,7 @@ export default function AllBoats() {
                     <a href="/registerboat" class="btn btn-primary">
                       <AddIcon /> Add New
                     </a>
-                    <a class="btn btn-info" onClick={() => generatePDF(boats)}>
+                    <a class="btn btn-light" onClick={() => generatePDF(boats)}>
                       <PDF /> Generate PDF
                     </a>
                   </div>
