@@ -1,5 +1,6 @@
 import React from "react";
 import "../../res/css/b.ownerDashboard.css";
+import logo from '../navbars/logo.png'
 
 export default function BODashboard() {
 
@@ -7,9 +8,7 @@ export default function BODashboard() {
     <>
       <section class="hero">
         <header id="header">
-          <a id="logo" href="#">
-            logo
-          </a>
+        <img  src={logo} style={{ width: '150px', height: '150px' }}></img>
           <nav>
             <a id="pageheader">BOAT OWNER DASHBOARD</a>
           </nav>
@@ -33,27 +32,6 @@ export default function BODashboard() {
           </a>
         </footer>
       </section>
-      <article>
-        <center>
-        <h2>ABOUT US</h2></center>
-        <p>
-          The rest of the page content continues below the hero. You can use the
-          hero at the top of your page, e.g. the home page. A hero is great to
-          display a high quality picture together with tasty title.
-        </p>
-        <p>
-          Ad donec tincidunt torquent ultricies convallis sodales faucibus
-          magna, fringilla lorem blandit sollicitudin donec faucibus curae orci
-          molestie, et proin curae aliquet venenatis ligula amet vivamus orci
-          varius arcu.
-        </p>
-        <p>
-          Laoreet fusce condimentum venenatis quisque imperdiet ornare cras
-          faucibus convallis, pharetra habitasse elementum ut bibendum per
-          sociosqu phasellus etiam, velit faucibus integer torquent leo
-          elementum maecenas netus.
-        </p>
-      </article>
     </>
   );
 }
