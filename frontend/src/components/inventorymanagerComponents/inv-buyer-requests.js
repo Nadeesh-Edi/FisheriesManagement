@@ -45,13 +45,13 @@ export default function BuyerRequests() {
                     <form>
                         <div className="row">
                             <div className="col-4">
-                                <input className="rounded-pill ps-2 mx-5" type="text" placeholder="Search Request Id"
+                                <input className="rounded-pill ps-2 mx-2 fs-5" type="text" placeholder="Search Request Id"
                                 onChange={(e) => {
                                     setRequestId(e.target.value);
                                 }}></input>
                             </div>
                             <div className="col-4">
-                                <input className="rounded-pill ps-2 mx-5" type="text" placeholder="Search Fish Type"
+                                <input className="rounded-pill ps-2 mx-2 fs-5" type="text" placeholder="Search Fish Type"
                                 onChange={(e) => {
                                     setFishType(e.target.value);
                                 }}></input>
