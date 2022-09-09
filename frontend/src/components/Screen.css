@@ -98,6 +98,7 @@ body {
 
 table {
   border-collapse: collapse;
+  color: #111;
 }
 
 th,
@@ -114,9 +115,9 @@ thead th {
 }
 
 tbody tr:nth-child(even) {
-  background-color: #f8f9fa;
+  background-color: #f8f9fa !;
 }
 
 tbody tr:nth-child(odd) {
-  background-color: #e9ecef;
+  background-color: #fbfbfb;
 }

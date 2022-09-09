@@ -7,7 +7,6 @@ function MainScreen({ children, title }) {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
   const logoutHandler = () => {
     dispatch(logout());
   };
@@ -16,7 +15,10 @@ function MainScreen({ children, title }) {
   return (
     <div className="">
       {' '}
-      <nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+      <nav
+        className="navbar navbar-expand-lg navbar-dark fixed-top "
+        style={{ backgroundColor: '#295875' }}
+      >
         <a className="navbar-brand" href="/">
           Sidebar Nav
         </a>
@@ -36,12 +38,13 @@ function MainScreen({ children, title }) {
           <ul
             className="navbar-nav mr-auto sidenav"
             id="navAccordion"
-            style={{ marginLeft: '-2px' }}
+            style={{ marginLeft: '-2px',backgroundColor: '#295875' }}
+            
           >
             {userInfo ? (
               <li
                 className="nav-item active text-center"
-                style={{ background: '#333' }}
+                style={{ backgroundColor: '#295875' }}
               >
                 <a className="nav-link" href="/profile">
                   <img
