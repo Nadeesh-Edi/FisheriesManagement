@@ -18,7 +18,7 @@ export default function AllProducts() {
     <img class="card__image" src={require("../../res/images/Fish/fish1.jpeg")} alt=""></img>
     <div class="card__content">
       <p >
-      <a href="/viewproduct" class="card__link">Thalapath(small)</a>
+      <a style={{fontSize:"22px",paddingLeft:"0px"}}  href="/viewproduct" class="card__link">Thalapath(small)</a>
       </p>
       <p style={{fontSize:'14px'}}>
         per 1kg
@@ -32,7 +32,7 @@ export default function AllProducts() {
     <img class="card__image" src={require("../../res/images/Fish/fish2.jpeg")} alt=""></img>
     <div class="card__content">
       <p >
-      <a href="./" class="card__link">Barumundi</a>
+      <a style={{fontSize:"22px",paddingLeft:"0px"}} href="./" class="card__link">Barumundi</a>
       </p>
       <p style={{fontSize:'14px'}}>
         per 1kg
@@ -46,7 +46,7 @@ export default function AllProducts() {
     <img class="card__image" src={require("../../res/images/Fish/fish3.jpeg")} alt=""></img>
     <div class="card__content">
       <p >
-      <a href="./" class="card__link">Linna</a>
+      <a style={{fontSize:"22px",paddingLeft:"0px"}} href="./" class="card__link">Linna</a>
       </p>
       <p style={{fontSize:'14px'}}>
         per 1kg
@@ -60,7 +60,7 @@ export default function AllProducts() {
     <img class="card__image" src={require("../../res/images/Fish/fish4.jpeg")} alt=""></img>
     <div class="card__content">
       <p >
-      <a href="./" class="card__link">Paraw</a>
+      <a style={{fontSize:"22px",paddingLeft:"0px"}} href="./" class="card__link">Paraw</a>
       </p>
       <p style={{fontSize:'14px'}}>
         per 1kg
@@ -74,7 +74,7 @@ export default function AllProducts() {
     <img class="card__image" src={require("../../res/images/Fish/fish5.jpeg")} alt=""></img>
     <div class="card__content">
       <p >
-      <a href="./" class="card__link">Tuna Fish</a>
+      <a style={{fontSize:"22px",paddingLeft:"0px"}} href="./" class="card__link">Tuna Fish</a>
       </p>
       <p style={{fontSize:'14px'}}>
         per 1kg
@@ -88,7 +88,7 @@ export default function AllProducts() {
     <img class="card__image" src={require("../../res/images/Fish/fish6.jpeg")} alt=""></img>
     <div class="card__content">
       <p >
-      <a href="./" class="card__link">Thalapath(Koppara)</a>
+      <a style={{fontSize:"22px",paddingLeft:"0px"}} href="./" class="card__link">Thalapath(Koppara)</a>
       </p>
       <p style={{fontSize:'14px'}}>
         per 1kg

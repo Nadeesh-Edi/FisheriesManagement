@@ -1,14 +1,14 @@
 import React from "react";
 import "../../res/css/OrderManagement.css";
 import OrderNav from "../navbars/OrderNav.js";
-import "../../res/css/inv-pages.css"
+
 import { Link } from "react-router-dom";
 
 export default function ViewProduct() {
     return (
         <>
         <OrderNav/>
-        <div className="page">
+        <div className="pageO">
         <div class="row">
   <div class="column" style={{paddingTop:'50px'}}>
   <img class="img_view" src={require("../../res/images/Fish/fish1.jpeg")} alt=""></img>
