@@ -41,7 +41,7 @@ export default function ViewOrder() {
     return (
         <>
         <OrderNav/>
-        <div className="page">
+        <div className="pageO">
         <div className="bill_view" >
         <div class="row">
   <div class="columnBill" >
@@ -49,14 +49,14 @@ export default function ViewOrder() {
   </div>
   <div class="columnBill" >
     <table>
-    <tr style={{fontSize:"22px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>Product:</td> <td style={{padding:'15px'}}>{orders.product}</td> </tr>
-    <tr style={{fontSize:"22px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>Price:</td> <td style={{padding:'15px'}}>{orders.price}</td> </tr>
-    <tr style={{fontSize:"22px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>Qty:</td> <td style={{padding:'15px'}}>{orders.qty}</td></tr>
-    <tr style={{fontSize:"22px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>Total:</td> <td style={{padding:'15px'}}>{orders.total} LKR</td> </tr>
-    <tr style={{fontSize:"22px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>Name:</td> <td style={{padding:'15px'}}>{orders.Name}</td> </tr>
-    <tr style={{fontSize:"22px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>phoneNo:</td> <td style={{padding:'15px'}}>{orders.phoneNo}</td> </tr>
-    <tr style={{fontSize:"22px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>Email:</td> <td style={{padding:'15px'}}>{orders.Email}</td></tr>
-    <tr style={{fontSize:"22px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>Address:</td> <td style={{padding:'15px'}}> {orders.Address}</td></tr>
+    <tr style={{fontSize:"20px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>Product:</td> <td style={{padding:'15px'}}>{orders.product}</td> </tr>
+    <tr style={{fontSize:"20px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>Price:</td> <td style={{padding:'15px'}}>{orders.price}</td> </tr>
+    <tr style={{fontSize:"20px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>Qty:</td> <td style={{padding:'15px'}}>{orders.qty}</td></tr>
+    <tr style={{fontSize:"20px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>Total:</td> <td style={{padding:'15px'}}>{orders.total} LKR</td> </tr>
+    <tr style={{fontSize:"20px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>Name:</td> <td style={{padding:'15px'}}>{orders.Name}</td> </tr>
+    <tr style={{fontSize:"20px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>phoneNo:</td> <td style={{padding:'15px'}}>{orders.phoneNo}</td> </tr>
+    <tr style={{fontSize:"20px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>Email:</td> <td style={{padding:'15px'}}>{orders.Email}</td></tr>
+    <tr style={{fontSize:"20px",color:'blue'}}><td style={{color:"gray",padding:'15px'}}>Address:</td> <td style={{padding:'15px'}}> {orders.Address}</td></tr>
     </table>
   </div>
   </div>

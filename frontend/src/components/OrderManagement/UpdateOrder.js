@@ -67,17 +67,17 @@ export default function UpdateOrder() {
   <img class="bill_img" src={require("../../res/images/Fish/fish1.jpeg")} alt=""></img>
   </div>
   <div class="column" >
-    <p style={{fontSize:"22px",color:"gray"}}>Product: {orders.product} </p>
-    <p style={{fontSize:"22px",color:"gray"}}>Price: {orders.price} </p>
-    <p style={{fontSize:"22px",color:"gray"}}>Qty: {orders.qty}</p>
-    <p style={{fontSize:"22px",color:"gray"}}>Total: {orders.total}</p>
+    <p style={{fontSize:"20px",color:"gray"}}>Product: {orders.product} </p>
+    <p style={{fontSize:"20px",color:"gray"}}>Price: {orders.price} </p>
+    <p style={{fontSize:"20px",color:"gray"}}>Qty: {orders.qty}</p>
+    <p style={{fontSize:"20px",color:"gray"}}>Total: {orders.total}</p>
   </div>
   </div>
   </div>
   <div className="bill_view" style={{marginTop:'0px'}}>
     
     <div class="container">
-    <form onSubmit={updateOrder}>
+    <form onSubmit={updateOrder} style={{fontSize:"16px"}}>
 
 <label >Name</label>
 <input className='inputText' type="text" id="fname" name="firstname" placeholder="Your name.." 
