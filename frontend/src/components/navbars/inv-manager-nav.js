@@ -10,7 +10,7 @@ export default function InvManagerNav() {
                 <a className="col-sm-3" href="/dashboard">DASHBOARD</a>
                 <a className="col-sm-3" href="/allBuyerRequests">BUYER REQUESTS</a>
                 <a className="col-sm-3" href="/allInventory">INVENTORY</a>
-                <a className="col-sm-3" href="">ASSIGNED LIST</a>
+                <a className="col-sm-3" href="/allAssigned">ASSIGNED LIST</a>
                 <a className="logoutBtn mb-0" href="">LOGOUT</a>
             </div>
         </>

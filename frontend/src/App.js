@@ -19,6 +19,8 @@ import RegisterBoat from "./components/boatOwnerComponents/registerboatScreen";
 import AllBoats from "./components/boatOwnerComponents/allboatsScreen";
 import BoatDetails from "./components/boatOwnerComponents/viewboatScreen";
 import UpdateBoat from "./components/boatOwnerComponents/editboatScreen";
+import AssignPopover from "./components/inventorymanagerComponents/assign-popover";
+import AllAssigned from "./components/inventorymanagerComponents/all-assigned";
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
         <Route path="/allBuyerRequests" element={<BuyerRequests />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/assignToBuy" element={<AssignInvForRequest />} />
+        <Route path="/allAssigned" element={<AllAssigned />} />
         <Route path="/bownerdashboard" element={<BODashboard />} />
         <Route path="/allProducts" element={<AllProducts/>} />
         <Route path="/viewproduct" element={<ViewProduct/>} />

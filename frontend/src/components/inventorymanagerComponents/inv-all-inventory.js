@@ -82,7 +82,6 @@ export default function ViewAllInventory() {
                 <table className="table table-striped mx-5">
                     <thead>
                         <tr className="table-dark fs-6">
-                            <th>INVENTORY ID</th>
                             <th><center>BOAT ID</center></th>
                             <th><center>OWNER NAME</center></th>
                             <th><center>INVENTORY DATE</center></th>
@@ -118,7 +117,6 @@ export default function ViewAllInventory() {
                                 }
                             }).map(function(f) {
                                 return <tr>
-                                    <td >{f._id} </td>
                                     <td ><center> {f.boatId} </center></td>
                                     <td ><center> {f.owner} </center></td>
                                     <td ><center> {f.inventoryDate} </center></td>

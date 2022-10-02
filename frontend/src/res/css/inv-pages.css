@@ -1,6 +1,7 @@
 .page {
     margin-left: 15%;
     margin-bottom: 10px;
+    position: relative;
 }
 
 .purple-btn {
@@ -15,4 +16,39 @@
 
 .tabCol {
     width: 25px;
+}
+
+.addbtn {
+    border-radius: 50%;
+    width: 100px;
+}
+
+.overlay {
+    position: fixed;
+    width: 300%;
+}
+
+.popover {
+    position: absolute;
+    display: inline-table;
+    margin: 0px 50px 0px 50px;
+    padding: 0px 50px 0px 50px;
+    width: 300px!important;
+    transform: translate(16%, -10%);
+    box-shadow: 2px 2px 2px 2px rgb(58, 76, 98);
+    -ms-transform: translate(-50%,-50%);
+}
+
+.pop {
+    padding: 10% 10% 5% 0%;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 300px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
 }
