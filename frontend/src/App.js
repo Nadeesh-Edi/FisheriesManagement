@@ -22,6 +22,7 @@ import UpdateBoat from "./components/boatOwnerComponents/editboatScreen";
 
 import UpdateInventory from "./components/boatOwnerComponents/updateInventoryScreen";
 import Assignedorders from "./components/boatOwnerComponents/assignedordersScreen";
+import AllAssigned from "./components/inventorymanagerComponents/all-assigned"
 
 
 function App() {
