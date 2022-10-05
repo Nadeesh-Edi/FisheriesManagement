@@ -10,48 +10,11 @@ import "jspdf-autotable";
 import img from '../navbars/logo.png';
 import BOwnerNav from "../navbars/b.owner.nav";
 import PDF from "@material-ui/icons/PictureAsPdfRounded";
-import View from "@material-ui/icons/VisibilityRounded";
 
-export default function Assignedorders() {
+export default function Acceptedorders() {
   const [orders, setOrders] = useState([]);
   const [searchTerm, setsearchTerm] = useState("");
 
-  const [status, setStatus] = useState("");
-
-  function updateData(e) {
-    e.preventDefault();
-
-    const newOrder = {
-      status,
-
-    }}
-
-  const deleteOrder = (id) => {
-    swal({
-      title: "Are you sure?",
-      text: "The Order Will be Declined",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        axios.delete(`http://localhost:9000/order/deleteOrder/${id}`).then(() => {
-          if (willDelete) {
-            swal({
-              title: "The Order has been declined!",
-              text: "You can Continue with Remaining Orders.",
-              icon: "success",
-              type: "success",
-            }).then(function () {
-              window.location.href = "";
-            });
-          } else {
-            swal("Order Is Not Declined");
-          }
-        });
-      }
-    });
-  };
 
   const generatePDF = (tickets) => {
     const doc = new jspdf();
@@ -64,7 +27,6 @@ export default function Assignedorders() {
       "Unit Price",
       "Quantity",
       "Total Price",
-      "Status",
       "Buyer Name",
       "Phone No",
       "Email",
@@ -80,7 +42,6 @@ export default function Assignedorders() {
         ticket.price,
         ticket.qty,
         ticket.total,
-        ticket.status,
         ticket.Name,
         ticket.phoneNo,
         ticket.Email,
@@ -88,7 +49,7 @@ export default function Assignedorders() {
       ];
       tableRows.push(ticketData);
     });
-    doc.text("Assigned Order Details Report", 14, 15).setFontSize(12);
+    doc.text("Accepted Order Details Report", 14, 15).setFontSize(12);
     doc.text(`Report Genarated Date - ${dateStr} `, 14, 23);
     doc.addImage(img, 'JPEG', 170, 8, 22, 22);
     // right down width height
@@ -96,7 +57,7 @@ export default function Assignedorders() {
       styles: { fontSize: 8 },
       startY: 35,
     });
-    doc.save(`Assigned_Orders_Report.pdf`);
+    doc.save(`Accepted_Orders_Report.pdf`);
   };
 
   useEffect(() => {
@@ -188,6 +149,12 @@ export default function Assignedorders() {
                       <center> Phone Number </center>
                     </th>
                     <th>
+                      <center> Address </center>
+                    </th>
+                    <th>
+                      <center> Email </center>
+                    </th>
+                    <th>
                       <center> Product </center>
                     </th>
                     <th>
@@ -195,13 +162,6 @@ export default function Assignedorders() {
                     </th>
                     <th>
                       <center> Total Price </center>
-                    </th>
-                    <th>
-                      <center> Status </center>
-                    </th>
-                    <th>
-                    </th>                    
-                    <th>
                     </th>
                   </tr>
                 </thead>
@@ -243,6 +203,12 @@ export default function Assignedorders() {
                             <center> {f.phoneNo} </center>
                           </td>
                           <td>
+                            <center> {f.Address} </center>
+                          </td>
+                          <td>
+                            <center> {f.Email} </center>
+                          </td>
+                          <td>
                             <center> {f.product} </center>
                           </td>
                           <td>
@@ -250,24 +216,6 @@ export default function Assignedorders() {
                           </td>
                           <td>
                             <center> {f.total} </center>
-                          </td>
-                          <td>
-                            <center> {f.status} </center>
-                          </td>
-
-                          <td >
-                          {" "}
-                            <Link to={"/vieworderdetails/" + f._id}>
-                              <Button
-                                type="button"
-                                class="btn btn-outline-secondary"
-                              >
-                                {" "}
-                                <View />{" "}
-                              </Button>
-                            </Link>
-
-                            
                           </td>
                         </tr>
                       );
