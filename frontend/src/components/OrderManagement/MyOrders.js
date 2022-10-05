@@ -8,6 +8,10 @@ import swal from 'sweetalert2';
 export default function MyOrders() {
 
     const [orders,setOrders]=useState([])
+    const [orderId,setOrderId]=useState("")
+    const [date,setDate]=useState("")
+    const [product,setProduct]=useState("")
+    const [filterClicked, setFilterClicked] = useState(false);
 
     const deleteOrder=(id) =>{
        
@@ -19,6 +23,11 @@ export default function MyOrders() {
                 window.location.href="/myorders"
             })
     
+        }
+
+        function filter(e) {
+            e.preventDefault();
+            setFilterClicked(true);
         }
 
     useEffect(()=>{
@@ -36,15 +45,25 @@ export default function MyOrders() {
     return (
         <>
         <OrderNav/>
-        <div className="page">
+        <div className="pageO">
                 <h1 className="mx-5 text-body mb-5 pt-5">My Orders</h1>
                 <br></br>
                 <div className="shadow-lg p-3 mb-5 mx-5 bg-body rounded">
                     <form>
-                        <input className="rounded-pill ps-2 mx-5" type="text" placeholder="Search Order No"></input>
+                        <input className="rounded-pill ps-2 mx-5" type="text" placeholder="Search Order No"
+                        onChange={(e) => {
+                            setOrderId(e.target.value);
+                        }}></input>
                         
-                        <input className="rounded-pill ps-2 mx-5" type="date" placeholder="Order Date"></input>
-                        <button type="submit" className="btn btn-primary rounded mx-5 px-5">FILTER</button>
+                        <input className="rounded-pill ps-2 mx-5" type="date" placeholder="Order Date"
+                        onChange={(e) => {
+                            setDate(e.target.value);
+                        }}></input>
+                        <input className="rounded-pill ps-2 mx-5" type="text" placeholder="Product"
+                        onChange={(e) => {
+                            setProduct(e.target.value);
+                        }}></input>
+                        <button type="submit" onClick={filter} className="btn btn-primary rounded mx-5 px-5">FILTER</button>
                     </form>
                 </div>
                 <table className="table table-bordered">
@@ -54,12 +73,28 @@ export default function MyOrders() {
                             <th>Date</th>
                             <th>Product</th>
                             <th>Price(Rs)</th>
-                            <th>Status</th>                       
+                            <th>Status</th> 
+                            <th></th>                     
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            orders.map(function (f,index){
+                            orders.filter(val => {
+                                if(!filterClicked) {
+                                    return val;
+                                }
+                                else {
+                                    if (orderId) {
+                                        return val.orderId == orderId
+                                    }
+                                    if (date) {
+                                        return val.date== date
+                                    }
+                                    if (product) {
+                                        return val.product == product
+                                    }
+                                }
+                            }).map(function (f,index){
                                 var dateO = new Date(f.date).toLocaleDateString();
                                 return <tr key={index}>
                                     <td scope="row">{index+1}</td>
@@ -68,8 +103,8 @@ export default function MyOrders() {
                                     <td >{f.total}</td>
                                     <td >{f.status}</td>
                                     <td>
-                                        <Link to={"/vieworder/"+f._id}><button style={{marginRight:'5px'}} className="btn btn-info">View</button></Link>
-                                        <Link to={"/updateorder/"+f._id}><button style={{marginRight:'5px'}} className="btn btn-warning">Update</button></Link>
+                                        <Link to={"/vieworder/"+f._id}><button className="btn btn-info">View</button></Link>
+                                        <Link to={"/updateorder/"+f._id}><button className="btn btn-warning">Update</button></Link>
                                         <button className="btn btn-danger" onClick={() =>  deleteOrder(f._id)}>Cancel</button>
                                     </td>
 

@@ -3,7 +3,7 @@
     height: 100%;
     background-size: cover;
     background-position: center center;
-    margin-left: 15%;
+    margin-left: 0%;
 }
 
 .dash-btn {
@@ -15,4 +15,20 @@
 .dash-btn-set {
     margin-top: 100px;
     margin-left: 20%;
+}
+
+.heading { 
+    margin:10px 0 10px 0;
+    font-size: 52px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0px #DC143C,
+      2px 2px 0px #DC143C,
+      3px 3px 0px #DC143C,
+      4px 4px 0px #DC143C;
+  }
+
+.dashBtn {
+    font-size: 25px;
+    font-weight: bold;
 }

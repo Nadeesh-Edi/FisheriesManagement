@@ -21,6 +21,10 @@ const inventorySchema = mongoose.Schema(
         qty : {
             type: String,
             required: true
+        },
+        assign : {
+            type: Boolean,
+            default: false
         }
     },
     {

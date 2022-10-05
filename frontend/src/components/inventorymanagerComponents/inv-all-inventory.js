@@ -74,7 +74,7 @@ export default function ViewAllInventory() {
                         }}></input>
                         <input className="rounded-pill ps-2 mx-5" type="date" placeholder="Inventory Date"
                         onChange={(e) => {
-                            setDate(e.target.value.toString)
+                            setDate(e.target.value)
                         }}></input>
                         <button type="submit" onClick={filter} className="btn btn-primary rounded mx-5 px-5">FILTER</button>
                     </form>
@@ -82,7 +82,6 @@ export default function ViewAllInventory() {
                 <table className="table table-striped mx-5">
                     <thead>
                         <tr className="table-dark fs-6">
-                            <th>INVENTORY ID</th>
                             <th><center>BOAT ID</center></th>
                             <th><center>OWNER NAME</center></th>
                             <th><center>INVENTORY DATE</center></th>
@@ -97,20 +96,27 @@ export default function ViewAllInventory() {
                                 if(!filterClicked) {
                                     return val;
                                 }
+                                else if(boatId.length === 0 && fishType.length === 0 & date.length === 0) {
+                                    return val;
+                                }
+                                else if(boatId.length !== 0 && fishType.length !== 0 & date.length !== 0) {
+                                    return val.boatId.toLowerCase().includes(boatId.toLowerCase()) &&
+                                        val.fishType.toLowerCase().includes(fishType.toLowerCase()) &&
+                                        val.inventoryDate.toLowerCase().includes(date.toLowerCase())
+                                }
                                 else {
                                     if (boatId) {
-                                        return val.boatId == boatId
+                                        return val.boatId.toLowerCase().includes(boatId.toLowerCase())
                                     }
                                     if (fishType) {
-                                        return val.fishType == fishType
+                                        return val.fishType.toLowerCase().includes(fishType.toLowerCase())
                                     }
                                     if (date) {
-                                        return val.date == date
+                                        return val.inventoryDate.toLowerCase().includes(date.toLowerCase())
                                     }
                                 }
                             }).map(function(f) {
                                 return <tr>
-                                    <td >{f._id} </td>
                                     <td ><center> {f.boatId} </center></td>
                                     <td ><center> {f.owner} </center></td>
                                     <td ><center> {f.inventoryDate} </center></td>
