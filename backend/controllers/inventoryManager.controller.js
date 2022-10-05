@@ -20,29 +20,29 @@ const getInventory = asyncHandler(async (req, res) => {
 
 // Create inventory
 const postInventory = asyncHandler(async (req, res) => {
-  const { boatId, owner, inventoryDate, fishType, qty } = req.body;
 
-  const inventory = new Inventories({
-    boatId,
-    owner,
-    inventoryDate,
-    fishType,
-    qty,
-  });
+    const {boatName, owner, inventoryDate, fishType, qty} = req.body;
 
-  try {
-    inventory
-      .save()
-      .then(() => {
-        res.status(201).json(inventory);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  } catch {
-    res.status(400);
-  }
-});
+    const inventory = new Inventories({
+        boatName, 
+        owner, 
+        inventoryDate, 
+        fishType, 
+        qty
+    })
+
+    try {
+        inventory.save().then(() => {
+            res.status(201).json(inventory);
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+    catch {
+        res.status(400)
+    }
+})
+
 
 // Get all buyer requests
 const getAllBuyRequests = asyncHandler(async (req, res) => {
