@@ -2,7 +2,7 @@ import  mongoose  from 'mongoose';
 
 const inventorySchema = mongoose.Schema(
     {
-        boatId : {
+        boatName : {
             type: String,
             required: true
         },
@@ -11,7 +11,7 @@ const inventorySchema = mongoose.Schema(
             required: true
         },
         inventoryDate : {
-            type: String,
+            type: Date,
             required: true
         },
         fishType : {
@@ -19,7 +19,7 @@ const inventorySchema = mongoose.Schema(
             required: true
         },
         qty : {
-            type: Number,
+            type: String,
             required: true
         }
     },

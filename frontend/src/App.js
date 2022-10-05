@@ -19,6 +19,8 @@ import RegisterBoat from "./components/boatOwnerComponents/registerboatScreen";
 import AllBoats from "./components/boatOwnerComponents/allboatsScreen";
 import BoatDetails from "./components/boatOwnerComponents/viewboatScreen";
 import UpdateBoat from "./components/boatOwnerComponents/editboatScreen";
+import UpdateInventory from "./components/boatOwnerComponents/updateInventoryScreen";
+import Assignedorders from "./components/boatOwnerComponents/assignedordersScreen";
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
         <Route path="/allboats" element={<AllBoats />} />
         <Route path="/boatdetails/:id" element={<BoatDetails />} />
         <Route path="/updateboat/:id" element={<UpdateBoat />} />
+        <Route path="/updateinventory" element={<UpdateInventory/>} />
+        <Route path="/assignedorders" element={<Assignedorders/>} />
       </Routes>
     </Router>
   );

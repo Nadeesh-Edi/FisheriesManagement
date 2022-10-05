@@ -15,8 +15,8 @@ export default function BOwnerNav() {
             <li><a href="/bownerdashboard">DASHBOARD</a></li>
             <li><a href="#">PROFILE</a></li>
             <li><a href="/allboats">BOATS</a></li>
-            <li><a href="#">INVENTRY</a></li>
-            <li><a href="#">ODERS</a></li>
+            <li><a href="/updateinventory">INVENTRY</a></li>
+            <li><a href="/assignedorders">ODERS</a></li>
         </ul> 
         <div class="logout">
           <a href="#">Log Out</a>

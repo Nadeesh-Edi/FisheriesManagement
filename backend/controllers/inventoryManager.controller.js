@@ -18,10 +18,10 @@ const getInventory = asyncHandler(async (req, res) => {
 
 // Create inventory
 const postInventory = asyncHandler(async (req, res) => {
-    const {boatId, owner, inventoryDate, fishType, qty} = req.body;
+    const {boatName, owner, inventoryDate, fishType, qty} = req.body;
 
     const inventory = new Inventories({
-        boatId, 
+        boatName, 
         owner, 
         inventoryDate, 
         fishType, 
