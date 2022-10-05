@@ -22,7 +22,9 @@ import UpdateBoat from "./components/boatOwnerComponents/editboatScreen";
 
 import UpdateInventory from "./components/boatOwnerComponents/updateInventoryScreen";
 import Assignedorders from "./components/boatOwnerComponents/assignedordersScreen";
-import AllAssigned from "./components/inventorymanagerComponents/all-assigned"
+import AllAssigned from "./components/inventorymanagerComponents/all-assigned";
+import Acceptedorders from "./components/boatOwnerComponents/acceptedordersScreen";
+import ViewOrderDetails from "./components/boatOwnerComponents/vieworderdetailsScreen";
 
 
 function App() {
@@ -47,6 +49,8 @@ function App() {
         <Route path="/updateboat/:id" element={<UpdateBoat />} />
         <Route path="/updateinventory" element={<UpdateInventory/>} />
         <Route path="/assignedorders" element={<Assignedorders/>} />
+        <Route path="/accepteddorders" element={<Acceptedorders/>} />
+        <Route path="/vieworderdetails/:id" element={<ViewOrderDetails/>} />
       </Routes>
     </Router>
   );
