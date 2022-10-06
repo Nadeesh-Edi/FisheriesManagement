@@ -16,42 +16,6 @@ export default function Assignedorders() {
   const [orders, setOrders] = useState([]);
   const [searchTerm, setsearchTerm] = useState("");
 
-  const [status, setStatus] = useState("");
-
-  function updateData(e) {
-    e.preventDefault();
-
-    const newOrder = {
-      status,
-
-    }}
-
-  const deleteOrder = (id) => {
-    swal({
-      title: "Are you sure?",
-      text: "The Order Will be Declined",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        axios.delete(`http://localhost:9000/order/deleteOrder/${id}`).then(() => {
-          if (willDelete) {
-            swal({
-              title: "The Order has been declined!",
-              text: "You can Continue with Remaining Orders.",
-              icon: "success",
-              type: "success",
-            }).then(function () {
-              window.location.href = "";
-            });
-          } else {
-            swal("Order Is Not Declined");
-          }
-        });
-      }
-    });
-  };
 
   const generatePDF = (tickets) => {
     const doc = new jspdf();
@@ -129,10 +93,10 @@ export default function Assignedorders() {
             <div>
       <ul className="nav nav-tabs">
       <li className="nav-item">
-      <a className="nav-link" aria-current="page" href="/assignedorders">Pending Assigned Orders</a>
+      <a className="nav-link  active" aria-current="page" href="/assignedorders">Pending Orders</a>
       </li>
       <li className="nav-item">
-      <a className="nav-link active"  href="/accepteddorders">Accepted Assigned Orders</a>
+      <a className="nav-link"  href="/accepteddorders">Accepted Orders</a>
       </li>
       </ul>
       </div>
