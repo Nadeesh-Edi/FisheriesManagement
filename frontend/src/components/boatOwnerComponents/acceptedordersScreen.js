@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../res/css/regboat.css";
 import "../../res/css/allboats.css";
-import { Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import jspdf from "jspdf";
 import "jspdf-autotable";
@@ -12,7 +10,7 @@ import BOwnerNav from "../navbars/b.owner.nav";
 import PDF from "@material-ui/icons/PictureAsPdfRounded";
 
 export default function Acceptedorders() {
-  const [orders, setOrders] = useState([]);
+  const [aorders, setAOrders] = useState([]);
   const [searchTerm, setsearchTerm] = useState("");
 
 
@@ -24,7 +22,6 @@ export default function Acceptedorders() {
       "Order No",
       "Date",
       "Product",
-      "Unit Price",
       "Quantity",
       "Total Price",
       "Buyer Name",
@@ -39,7 +36,6 @@ export default function Acceptedorders() {
         ticket.OrderNo,
         ticket.date,
         ticket.product,
-        ticket.price,
         ticket.qty,
         ticket.total,
         ticket.Name,
@@ -61,17 +57,17 @@ export default function Acceptedorders() {
   };
 
   useEffect(() => {
-    function getOrders() {
+    function getAOrders() {
       axios
-        .get("http://localhost:9000/order/showOrders")
+        .get("http://localhost:9000/aorder/showacceptedOrders")
         .then((res) => {
-          setOrders(res.data);
+          setAOrders(res.data);
         })
         .catch((err) => {
           alert(err.message);
         });
     }
-    getOrders();
+    getAOrders();
   }, []);
 
   return (
@@ -101,10 +97,10 @@ export default function Acceptedorders() {
               <div class="table-title">
                 <div class="row">
                   <div class="col-sm-4">
-                    <h2 className="h2o">All Assigned Order Details</h2>
+                    <h2 className="h2o">All Accepted Order Details</h2>
                   </div>
                   <div class="col-sm-8">
-                    <a class="btn btn-light" onClick={() => generatePDF(orders)}>
+                    <a class="btn btn-light" onClick={() => generatePDF(aorders)}>
                       <PDF /> Generate PDF
                     </a>
                   </div>
@@ -113,7 +109,7 @@ export default function Acceptedorders() {
               <div class="table-filter">
                 <div class="row">
                   <div class="col-sm-3">
-                    <h5>Pending Order Count : {orders.length}</h5>
+                    <h5>Accepted Order Count : {aorders.length}</h5>
                   </div>
                   <div class="col-sm-9">
                     <div class="filter-group">
@@ -166,7 +162,7 @@ export default function Acceptedorders() {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders
+                  {aorders
                     .filter((val) => {
                       if (searchTerm === "") {
                         return val;
