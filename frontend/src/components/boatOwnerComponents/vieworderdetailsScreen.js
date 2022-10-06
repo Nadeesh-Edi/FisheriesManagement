@@ -3,11 +3,14 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "../../res/css/regboat.css";
 import "jspdf-autotable";
+import swal from "sweetalert";
+import { useForm } from "react-hook-form";
 import BOwnerNav from "../navbars/b.owner.nav";
 
 export default function ViewOrderDetails() {
   const { id } = useParams();
 
+  const { handleSubmit} = useForm();
 
   const [OrderNo, setOrderNo] = useState("");
   const [date, setDate] = useState("");
@@ -49,6 +52,38 @@ export default function ViewOrderDetails() {
         console.log(id);
       });
   }, []);
+
+  function Acceptorder(e){
+    //e.preventDefault();
+    
+    const newAcceptOrder = {
+
+      OrderNo,date,product,qty,total,Name,phoneNo,Email,Address
+    }
+
+
+axios.post("http://localhost:9000/aorder/acceptOrder",newAcceptOrder).then((willaccept)=>{
+
+        if(willaccept){
+  axios.delete(`http://localhost:9000/order/deleteOrder/${id}`).then(()=>{
+    
+  if (willaccept) {
+    swal({
+      title: "The Order has been Accepted!",
+      icon:  "success",
+      type: "success"
+    }).then(function(){
+      window.location.href="/acceptedorders";
+
+     })
+  } else {
+    swal("Order Is Not Accepted");
+  }
+});
+}
+});
+    
+  }
 
   return (
     <>
@@ -125,14 +160,6 @@ export default function ViewOrderDetails() {
                   <center> {orders.total} </center>
                 </td>
               </tr>
-              <tr>
-                <td>
-                  <center> Order Status </center>
-                </td>
-                <td>
-                  <center> {orders.status} </center>
-                </td>
-              </tr>
               <tr class="table-secondary">
                 <td>
                   <center> Customer Name </center>
@@ -170,6 +197,11 @@ export default function ViewOrderDetails() {
           </table>
         </table>        
     
+        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+                <center><button type="submit"  class="btn btn-outline-primary btn-lg" onClick={handleSubmit(() =>  Acceptorder())}>Accept</button></center>
+                <center><button type="submit"  class="btn btn-outline-danger btn-lg" >Decline</button></center>
+                </div>
+        
         <br/><br/>
       </div>
       </div>

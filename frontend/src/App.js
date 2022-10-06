@@ -26,7 +26,6 @@ import AllAssigned from "./components/inventorymanagerComponents/all-assigned";
 import Acceptedorders from "./components/boatOwnerComponents/acceptedordersScreen";
 import ViewOrderDetails from "./components/boatOwnerComponents/vieworderdetailsScreen";
 
-
 function App() {
   return (
     <Router>
@@ -51,6 +50,7 @@ function App() {
         <Route path="/assignedorders" element={<Assignedorders/>} />
         <Route path="/accepteddorders" element={<Acceptedorders/>} />
         <Route path="/vieworderdetails/:id" element={<ViewOrderDetails/>} />
+        <Route path="/acceptedorders" element={<Acceptedorders/>} />
       </Routes>
     </Router>
   );
