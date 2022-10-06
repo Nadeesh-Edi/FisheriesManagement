@@ -86,10 +86,10 @@ export default function Acceptedorders() {
             <div>
       <ul className="nav nav-tabs">
       <li className="nav-item">
-      <a className="nav-link" aria-current="page" href="/assignedorders">Pending Assigned Orders</a>
+      <a className="nav-link"  href="/assignedorders">Pending Orders</a>
       </li>
       <li className="nav-item">
-      <a className="nav-link active"  href="/accepteddorders">Accepted Assigned Orders</a>
+      <a className="nav-link active" aria-current="page"  href="/accepteddorders">Accepted Orders</a>
       </li>
       </ul>
       </div>
