@@ -6,6 +6,7 @@ import "../../res/css/inv-pages.css"
 export default function AssignPopover(props) {
     const product = props.name.product;
     const closeFunc = props.name.popFunc;
+    let addedInv = props.name.addedInv;
     const [inventory, setInventory] = useState([]);
     const [selectedInv, setSelectedInv] = useState([]);
     const [assingQty, setAssignQty] = useState(0);
@@ -21,6 +22,7 @@ export default function AssignPopover(props) {
     function createAssign() {
         axios.post(`http://localhost:9000/api/invManager/updateToAssigned/${selectedInv._id}`).then(() => {
             alert("Item assigned to request successfully");
+            addedInv.push(selectedInv)
             closePopup();
         }).catch((err) => {
             alert(err);
