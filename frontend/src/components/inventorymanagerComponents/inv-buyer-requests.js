@@ -3,6 +3,10 @@ import axios from "axios";
 import "../../res/css/inv-pages.css"
 import {Link, useNavigate,createSearchParams} from "react-router-dom"
 import InvManagerNav from "../navbars/inv-manager-nav";
+import jspdf from "jspdf";
+import "jspdf-autotable";
+import img from "../navbars/logo.png";
+import PDF from "@material-ui/icons/PictureAsPdfRounded";
 
 export default function BuyerRequests() {
     const [requests, setRequests] = useState([]);
@@ -19,6 +23,72 @@ export default function BuyerRequests() {
             alert((err.message));
         })
     }
+
+    const getFiltersForPDF = () => {
+        let inventories = [];
+    
+        requests.forEach((val) => {
+          if (!searchClick) {
+            inventories.push(val)
+          } else if (
+            requestId.length === 0 && fishType.length === 0
+          ) {
+            inventories.push(val);
+          } else if (
+            requestId.length !== 0 && fishType.length !== 0
+          ) {
+              val.OrderNo.toLowerCase().includes(requestId.toLowerCase()) ? inventories.push(val) : doNothing()
+              val.product.toLowerCase().includes(fishType.toLowerCase()) ? inventories.push(val) : doNothing()
+          } else {
+            if (requestId) {
+              val.OrderNo.toLowerCase().includes(requestId.toLowerCase()) ? inventories.push(val) : doNothing()
+            }
+            if (fishType) {
+              val.product.toLowerCase().includes(fishType.toLowerCase())? inventories.push(val): doNothing()
+            }
+          }
+        });
+    
+        return inventories;
+      };
+    
+      function doNothing() {
+    
+      }
+
+      const generatePDF = () => {
+        const pdfInventory = getFiltersForPDF();
+    
+        const doc = new jspdf();
+        const date = Date().split(" ");
+        const dateStr = date[1] + "-" + date[2] + "-" + date[3];
+        const tableColumn = [
+          "Request Id",
+          "Requester",
+          "Type of fish",
+          "Quantity",
+        ];
+        const tableRows = [];
+    
+        pdfInventory.map((inv) => {
+          const invData = [
+            inv.OrderNo,
+            inv.Name,
+            inv.product,
+            inv.qty,
+          ];
+          tableRows.push(invData);
+        });
+        doc.text("All Buyer Requests Detailed Report", 14, 15).setFontSize(12);
+        doc.text(`Report Genarated Date - ${dateStr} `, 14, 23);
+        doc.addImage(img, "JPEG", 170, 8, 22, 22);
+        // right down width height
+        doc.autoTable(tableColumn, tableRows, {
+          styles: { fontSize: 8 },
+          startY: 35,
+        });
+        doc.save(`All_Buyer_Requests_Report.pdf`);
+      };
 
     function filter(e) {
         e.preventDefault();
@@ -108,7 +178,7 @@ export default function BuyerRequests() {
                 </table>
                 <div className="row justify-content-end">
                     <div className="col-4">
-                        <button className="btn btn-success rounded">GENERATE REPORT</button>
+                        <button className="btn btn-success rounded" onClick={() => generatePDF()}>GENERATE REPORT</button>
                     </div>
                 </div>
             </div>

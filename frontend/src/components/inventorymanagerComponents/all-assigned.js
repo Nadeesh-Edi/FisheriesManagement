@@ -14,6 +14,11 @@ export default function AllAssigned() {
             console.log(err);
         })
     }
+
+    function getDate(date) {
+        const fullDate = new Date(date);
+        return `${fullDate.getDate()} / ${fullDate.getMonth()} / ${fullDate.getFullYear()}`
+      }
     
     useEffect(() => {
         getAllAssigned()
@@ -25,23 +30,6 @@ export default function AllAssigned() {
             <div className="page">
                 <h1 className="mx-5 text-body mb-5 pt-5">ASSIGNED LIST</h1>
                 <br></br>
-                <div className="shadow-lg p-3 mb-5 mx-5 bg-body rounded fs-5">
-                    <form>
-                        {/* <input className="rounded-pill ps-2 mx-2 fs-5" type="text" placeholder="Search Boat Id"
-                        onChange={(e) => {
-                            setBoatId(e.target.value);
-                        }}></input>
-                        <input className="rounded-pill ps-2 mx-5" type="text" placeholder="Search Fish Type"
-                        onChange={(e) => {
-                            setFishType(e.target.value);
-                        }}></input>
-                        <input className="rounded-pill ps-2 mx-5" type="date" placeholder="Inventory Date"
-                        onChange={(e) => {
-                            setDate(e.target.value)
-                        }}></input>
-                        <button type="submit" onClick={filter} className="btn btn-primary rounded mx-5 px-5">FILTER</button> */}
-                    </form>
-                </div>
                 <table className="table table-striped mx-5">
                     <thead>
                         <tr className="table-dark fs-6">
@@ -57,11 +45,15 @@ export default function AllAssigned() {
                         {
                             allAssigned.map(function(f) {
                                 return <tr>
-                                    <td ><center> {f.inventory.owner} </center></td>
+                                    <td ><center> {
+                                        f.inventory.map(element => {
+                                          return <center>{element.owner}<br /> </center>
+                                        })
+                                        } </center></td>
                                     <td ><center> {f.order.Name} </center></td>
-                                    <td ><center> {f.inventory.fishType} </center></td>
-                                    <td ><center> {f.inventory.qty} </center></td>
-                                    <td ><center> {f.createdAt} </center></td>
+                                    <td ><center> {f.order.product} </center></td>
+                                    <td ><center> {f.order.qty} </center></td>
+                                    <td ><center> {getDate(f.createdAt)} </center></td>
                                 </tr>
                             })
                         }

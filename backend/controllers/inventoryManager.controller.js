@@ -120,7 +120,8 @@ const createAssignedList = asyncHandler(async (req, res) => {
   try {
     assign
       .save()
-      .then(() => {
+      .then(async() => {
+        const order = await orderDet.updateOne({ _id: ObjectId(order.id) }, { assigned:true });
         res.status(201).json(assign);
       })
       .catch((err) => {
@@ -145,6 +146,48 @@ const getAssignedByReqId = asyncHandler(async (req, res) => {
     res.json(assigned);
 })
 
+const deleteAssigned = asyncHandler(async (req,res) => {
+  const id = req.params.id;
+
+  try {
+    const deleted = await AssignedInventories.deleteOne({ _id: ObjectId(id) });
+    res.json(deleted);
+  } catch {
+    res.status(400);
+  }
+})
+
+const editAssigned = asyncHandler(async (req,res) => {
+  const id = req.params.id;
+
+  try {
+    const edited = await Inventories.updateOne({ _id:ObjectId(id) }, { assign: false })
+    res.json(edited)
+  } 
+  catch {
+    res.status(400);
+  }
+})
+
+const removeAssignedInv = asyncHandler(async (req,res) => {
+  const reqId = req.body.reqId;
+  const invId = req.body.invId;
+
+  try {
+    const deleted = await AssignedInventories.updateOne({ _id: ObjectId(reqId) }, { 
+      $pullAll: {
+        inventory: [{ _id: ObjectId(invId) }]
+      }
+     })
+     res.json(deleted)
+  }
+  catch {
+    res.status(400);
+  }
+})
+
+
+
 // Delete Inventory
 const deleteInventory = asyncHandler(async (req, res) => {
   const id = req.params.id;
@@ -167,5 +210,8 @@ export {
   createAssignedList,
   updateInventoryUnassigned,
   getAllAssigned,
-  getAssignedByReqId
+  getAssignedByReqId,
+  deleteAssigned,
+  removeAssignedInv,
+  editAssigned,
 };
