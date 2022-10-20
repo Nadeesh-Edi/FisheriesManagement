@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import BOwnerNav from "../navbars/b.owner.nav";
+import NavBarWithLayout from "../navbars/navBarWithLayout";
 import swal from "sweetalert";
 import "../../res/css/regboat.css";
 
@@ -53,7 +53,7 @@ export default function RegisterBoat() {
   }
   return (
     <>
-      <BOwnerNav />
+      <NavBarWithLayout />
       <div className="obody">
         <div className="container">
           <div className="pageo">
