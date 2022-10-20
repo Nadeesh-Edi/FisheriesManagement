@@ -11,7 +11,6 @@ import InvManagerRoutes from "./routes/inv.manage.routes.js"
 import OrderRoutes from './routes/OrderRoutes.js'
 import BillRoutes from './routes/BillRoutes.js'
 import FeedbackRoutes from './routes/FeedbackRoutes.js'
-import AOrderRoutes from './routes/acceptedOrder.routes.js'
 
 dotenv.config()
 
@@ -29,7 +28,6 @@ app.use('/api/boats', boatRoutes);
 app.use('/order',OrderRoutes);
 app.use('/bill',BillRoutes);
 app.use('/feedback',FeedbackRoutes);
-app.use('/aorder',AOrderRoutes);
 
 
 if (process.env.NODE_ENV === 'development') {
