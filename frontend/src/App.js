@@ -69,13 +69,13 @@ function App() {
           <Route path="/vieworderdetails/:id" element={<ViewOrderDetails />} />
 
           <Route path="/" component={LandingPage} exact />
-        <Route path="/login" component={LoginScreen} />
-        <Route path="/register" component={RegisterScreen} />
-        <Route
-          path="/userActivity"
-          component={({ history }) => (
-            <MyNotes search={search} history={history} />
-          )}
+          <Route path="/login" component={LoginScreen} />
+          <Route path="/register" component={RegisterScreen} />
+          <Route
+            path="/userActivity"
+            component={({ history }) => (
+              <MyNotes search={search} history={history} />
+          )} />
         </Routes>
       </Router>
   );

@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
-import colors from 'colors';
+// import colors from 'colors';
 import path from 'path';
 
 import noteRoutes from './routes/noteRoutes.js';
@@ -43,5 +43,5 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(
   PORT,
-  console.log(`Server running in dev mode on port ${PORT}..`.yellow.bold)
+  console.log(`Server running in dev mode on port ${PORT}..`.yellow)
 );
