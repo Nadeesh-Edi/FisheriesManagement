@@ -18,9 +18,6 @@ export default function BODashboard() {
           <h4>Sri Lanka's one and only Fisheries Management Website.</h4>
         </header>
         <footer class="hero-footer">
-          <a class="button button-primary" href="">
-            PROFILE
-          </a>
           <a class="button" href="/allboats">
             BOATS
           </a>

@@ -13,7 +13,6 @@ export default function BOwnerNav() {
     <center><img  src={logo} style={{ width: '170px', height: '170px' }}></img></center>
         <ul><br/>
             <li><a href="/bownerdashboard">DASHBOARD</a></li>
-            <li><a href="#">PROFILE</a></li>
             <li><a href="/allboats">BOATS</a></li>
             <li><a href="/updateinventory">INVENTRY</a></li>
             <li><a href="/assignedorders">ODERS</a></li>
