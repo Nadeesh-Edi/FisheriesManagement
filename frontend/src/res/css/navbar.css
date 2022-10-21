@@ -15,6 +15,7 @@
     border-radius: 25px;
     text-decoration: none;
     font-size: 18px;
+    width:100%;
     color: white;
     display: block;
   }
@@ -30,27 +31,49 @@
   }
 
   .sidenav .logoutBtn {
-    margin-top: 100px;
+    margin-top: 150px;
+    margin-bottom: 5px;
   }
 
   @media screen and (max-width: 700px) {
     .sidenav {
+      height: 10%;
       width: 100%;
-      height: 20%;
-      font-size: 10px;
-      position: relative;
+      display: flex;
+      top: 0;
+      left: 0;
+      background-color: #295875 ;
+      overflow-x: hidden;
     }
     .sidenav .logoutBtn {
       right: 0px;
     }  
-    .sidenav a {float: left;}
+    .sidenav a {
+      padding: 5px 5px 5px 5px;
+      border-radius: 25px;
+      text-decoration: none;
+      width: 25%;
+      font-size: 10px;
+      color: white;
+      display: block;
+    }
     div.content {margin-left: 0;}
   }
   
   /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
   @media screen and (max-width: 400px) {
+    .sidenav {
+      width: 100%;
+      height: 20px;
+      font-size: 5px;
+      position: relative;
+    }
     .sidenav a {
       text-align: center;
       float: none;
     }
+  }
+
+  .nav {
+    background-color: #295875;
   }

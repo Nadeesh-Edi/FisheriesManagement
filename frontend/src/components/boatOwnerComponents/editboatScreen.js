@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import BOwnerNav from "../navbars/b.owner.nav";
+import NavBarWithLayout from "../navbars/navBarWithLayout";
 import swal from "sweetalert";
 import "../../res/css/regboat.css";
 
@@ -85,7 +85,7 @@ export default function UpdateBoat() {
 
   return (
     <>
-      <BOwnerNav />
+      <NavBarWithLayout />
       <div className="obody">
         <div className="container">
           <div className="pageo">

@@ -5,7 +5,7 @@ import "../../res/css/regboat.css";
 import { Button } from "@material-ui/core";
 import jspdf from "jspdf";
 import "jspdf-autotable";
-import BOwnerNav from "../navbars/b.owner.nav";
+import NavBarWithLayout from "../navbars/navBarWithLayout";
 
 export default function BoatDetails() {
   const { id } = useParams();
@@ -53,7 +53,7 @@ export default function BoatDetails() {
 
   return (
     <>
-      <BOwnerNav />
+      <NavBarWithLayout />
       <div className="obody">
         <div className="container">
           <div className="pageo">

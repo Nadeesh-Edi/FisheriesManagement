@@ -24,10 +24,10 @@ export default function BODashboard() {
           <a class="button" href="/allboats">
             BOATS
           </a>
-          <a class="button button-primary" href="">
+          <a class="button button-primary" href="/updateinventory">
             INVENTRY
           </a>
-          <a class="button" href="">
+          <a class="button" href="/assignedorders">
             ORDERS
           </a>
         </footer>

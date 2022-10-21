@@ -7,13 +7,13 @@ import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import jspdf from "jspdf";
 import "jspdf-autotable";
-import img from '../navbars/logo.png';
-import BOwnerNav from "../navbars/b.owner.nav";
+import img from "../navbars/logo.png";
 import AddIcon from "@material-ui/icons/AddCircleOutline";
 import PDF from "@material-ui/icons/PictureAsPdfRounded";
 import View from "@material-ui/icons/VisibilityRounded";
 import Edit from "@material-ui/icons/EditRounded";
 import Delete from "@material-ui/icons/DeleteForeverRounded";
+import NavBarWithLayout from "../navbars/navBarWithLayout";
 
 export default function AllBoats() {
   const [boats, setBoats] = useState([]);
@@ -81,7 +81,7 @@ export default function AllBoats() {
     });
     doc.text("All Boat Details Report", 14, 15).setFontSize(12);
     doc.text(`Report Genarated Date - ${dateStr} `, 14, 23);
-    doc.addImage(img, 'JPEG', 170, 8, 22, 22);
+    doc.addImage(img, "JPEG", 170, 8, 22, 22);
     // right down width height
     doc.autoTable(tableColumn, tableRows, {
       styles: { fontSize: 8 },
@@ -106,7 +106,7 @@ export default function AllBoats() {
 
   return (
     <>
-      <BOwnerNav />
+    <NavBarWithLayout />
       <div className="obody">
         <div className="container">
           <div className="pageo">
@@ -156,110 +156,112 @@ export default function AllBoats() {
 
               <br />
 
-              <table className="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>
-                      <center> Boat Name </center>
-                    </th>
-                    <th>
-                      <center> Boat Type </center>
-                    </th>
-                    <th>
-                      <center> Engine Range (hp) </center>
-                    </th>
-                    <th>
-                      <center> Fish Hold Capacity (m³) </center>
-                    </th>
-                    <th>
-                      <center> View </center>
-                    </th>
-                    <th>
-                      <center> Edit </center>
-                    </th>
-                    <th>
-                      <center> Delete </center>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {boats
-                    .filter((val) => {
-                      if (searchTerm === "") {
-                        return val;
-                      } else if (
-                        val.boatName
-                          .toLowerCase()
-                          .includes(searchTerm.toLowerCase()) ||
-                        val.boatType
-                          .toLowerCase()
-                          .includes(searchTerm.toLowerCase()) ||
-                        // val.engineRange
-                        //   .toNumbers()
-                        //   .includes(searchTerm.toNumbers()) ||
-                        val.fishCapacity
-                          .toLowerCase()
-                          .includes(searchTerm.toLowerCase())
-                      ) {
-                        return val;
-                      }
-                    })
-                    .map(function (f) {
-                      return (
-                        <tr>
-                          <td>
-                            <center> {f.boatName} </center>
-                          </td>
-                          <td>
-                            <center> {f.boatType} </center>
-                          </td>
-                          <td>
-                            <center> {f.engineRange} </center>
-                          </td>
-                          <td>
-                            <center> {f.fishCapacity} </center>
-                          </td>
+              <div style={{ overflowX: "auto" }}>
+                <table className="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>
+                        <center> Boat Name </center>
+                      </th>
+                      <th>
+                        <center> Boat Type </center>
+                      </th>
+                      <th>
+                        <center> Engine Range (hp) </center>
+                      </th>
+                      <th>
+                        <center> Fish Hold Capacity (m³) </center>
+                      </th>
+                      <th>
+                        <center> View </center>
+                      </th>
+                      <th>
+                        <center> Edit </center>
+                      </th>
+                      <th>
+                        <center> Delete </center>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {boats
+                      .filter((val) => {
+                        if (searchTerm === "") {
+                          return val;
+                        } else if (
+                          val.boatName
+                            .toLowerCase()
+                            .includes(searchTerm.toLowerCase()) ||
+                          val.boatType
+                            .toLowerCase()
+                            .includes(searchTerm.toLowerCase()) ||
+                          // val.engineRange
+                          //   .toNumbers()
+                          //   .includes(searchTerm.toNumbers()) ||
+                          val.fishCapacity
+                            .toLowerCase()
+                            .includes(searchTerm.toLowerCase())
+                        ) {
+                          return val;
+                        }
+                      })
+                      .map(function (f) {
+                        return (
+                          <tr>
+                            <td>
+                              <center> {f.boatName} </center>
+                            </td>
+                            <td>
+                              <center> {f.boatType} </center>
+                            </td>
+                            <td>
+                              <center> {f.engineRange} </center>
+                            </td>
+                            <td>
+                              <center> {f.fishCapacity} </center>
+                            </td>
 
-                          <td>
-                            {" "}
-                            <Link to={"/boatdetails/" + f._id}>
-                              <Button
-                                type="button"
-                                class="btn btn-outline-secondary"
-                              >
-                                {" "}
-                                <View />{" "}
-                              </Button>
-                            </Link>
-                          </td>
-                          <td>
-                            {" "}
-                            <Link to={"/updateboat/" + f._id}>
-                              <Button
-                                type="button"
-                                class="btn btn-outline-primary"
-                              >
-                                {" "}
-                                <Edit />{" "}
-                              </Button>
-                            </Link>
-                          </td>
-                          <td>
-                            {" "}
-                            <Button
-                              type="button"
-                              class="btn btn-outline-danger"
-                              onClick={() => deleteBoat(f._id)}
-                            >
+                            <td>
                               {" "}
-                              <Delete />{" "}
-                            </Button>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                </tbody>
-              </table>
+                              <Link to={"/boatdetails/" + f._id}>
+                                <Button
+                                  type="button"
+                                  class="btn btn-outline-secondary"
+                                >
+                                  {" "}
+                                  <View />{" "}
+                                </Button>
+                              </Link>
+                            </td>
+                            <td>
+                              {" "}
+                              <Link to={"/updateboat/" + f._id}>
+                                <Button
+                                  type="button"
+                                  class="btn btn-outline-primary"
+                                >
+                                  {" "}
+                                  <Edit />{" "}
+                                </Button>
+                              </Link>
+                            </td>
+                            <td>
+                              {" "}
+                              <Button
+                                type="button"
+                                class="btn btn-outline-danger"
+                                onClick={() => deleteBoat(f._id)}
+                              >
+                                {" "}
+                                <Delete />{" "}
+                              </Button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>

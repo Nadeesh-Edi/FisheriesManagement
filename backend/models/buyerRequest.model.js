@@ -13,6 +13,10 @@ const buyRequestSchema = mongoose.Schema(
         qty: {
             type: Number,
             required: true
+        },
+        assigned: {
+            type: Boolean,
+            default: false
         }
     },
     {
