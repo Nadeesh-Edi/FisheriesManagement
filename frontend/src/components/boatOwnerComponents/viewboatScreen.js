@@ -65,9 +65,9 @@ export default function BoatDetails() {
         </h1>
         <br />
         
-        <table className="table table-bordered">
-          <table className="table table-hover">
-            <thead>
+        <div style={{ overflowX: "auto" }}>
+                <table className="table table-hover">
+                  <thead>
               <tr class="table-primary">
                 <th>
                   <center>Specifications</center>
@@ -160,7 +160,7 @@ export default function BoatDetails() {
               </tr>
             </tbody>                    
           </table>
-        </table>        
+          </div>      
         <div class="form-group">
           <label for="type">Description</label>
           <textarea

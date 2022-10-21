@@ -172,8 +172,9 @@ export default function Assignedorders() {
 
               <br />
 
-              <table className="table table-striped table-hover">
-                <thead>
+              <div style={{ overflowX: "auto" }}>
+                <table className="table table-hover">
+                  <thead>
                   <tr>
                     <th>
                       <center> Order No </center>
@@ -268,6 +269,7 @@ export default function Assignedorders() {
                     })}
                 </tbody>
               </table>
+            </div>
             </div>
           </div>
         </div>
