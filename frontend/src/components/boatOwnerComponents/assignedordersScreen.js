@@ -4,7 +4,6 @@ import "../../res/css/regboat.css";
 import "../../res/css/allboats.css";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import swal from "sweetalert";
 import jspdf from "jspdf";
 import "jspdf-autotable";
 import img from "../navbars/logo.png";
@@ -13,10 +12,46 @@ import PDF from "@material-ui/icons/PictureAsPdfRounded";
 import View from "@material-ui/icons/VisibilityRounded";
 
 export default function Assignedorders() {
-  const [orders, setOrders] = useState([]);
-  const [searchTerm, setsearchTerm] = useState("");
+  const [Aorders, setOrders] = useState([]);
+  const [Status, setStatus] = useState("");
+  const [Product, setProduct] = useState("");
+  const [searchClick, setSearchClick] = useState(false);
 
-  const generatePDF = (tickets) => {
+  const getFiltersForPDF = () => {
+    let orders = [];
+
+    Aorders.forEach((val) => {
+      if (!searchClick) {
+        orders.push(val)
+      } else if (
+        Product.length === 0 || Status.length === 0
+      ) {
+        orders.push(val);
+      } else if (
+        Product.length !== 0 || Status.length !== 0
+      ) {
+          val.product.toLowerCase().includes(Product.toLowerCase()) ? orders.push(val) : doNothing()
+          val.status.toLowerCase().includes(Status.toLowerCase()) ? orders.push(val) : doNothing()
+      } else {
+        if (Product) {
+          val.product.toLowerCase().includes(Product.toLowerCase())? orders.push(val): doNothing()
+        }
+        if (Status) {
+          val.status.toLowerCase().includes(Status.toLowerCase())? orders.push(val): doNothing()
+        }
+      }
+    });
+
+    return orders;
+  };
+
+  function doNothing() {
+    
+  }
+
+  const generatePDF = () => {
+    const pdfOrder = getFiltersForPDF();
+
     const doc = new jspdf();
     const date = Date().split(" ");
     const dateStr = date[1] + "-" + date[2] + "-" + date[3];
@@ -33,19 +68,19 @@ export default function Assignedorders() {
     ];
     const tableRows = [];
 
-    tickets.map((ticket) => {
-      const ticketData = [
-        ticket.OrderNo,
-        ticket.date,
-        ticket.product,
-        ticket.price,
-        ticket.qty,
-        ticket.total,
-        ticket.Name,
-        ticket.phoneNo,
-        ticket.status,
+    pdfOrder.map((odr) => {
+      const odrData = [
+        odr.OrderNo,
+        odr.date,
+        odr.product,
+        odr.price,
+        odr.qty,
+        odr.total,
+        odr.Name,
+        odr.phoneNo,
+        odr.status,
       ];
-      tableRows.push(ticketData);
+      tableRows.push(odrData);
     });
     doc.text("Assigned Order Details Report", 14, 15).setFontSize(12);
     doc.text(`Report Genarated Date - ${dateStr} `, 14, 23);
@@ -57,6 +92,11 @@ export default function Assignedorders() {
     });
     doc.save(`Assigned_Orders_Report.pdf`);
   };
+
+  function filter(e) {
+    e.preventDefault();
+    setSearchClick(true);
+}
 
   useEffect(() => {
     function getOrders() {
@@ -93,7 +133,7 @@ export default function Assignedorders() {
                   <div class="col-sm-8">
                     <a
                       class="btn btn-light"
-                      onClick={() => generatePDF(orders)}
+                      onClick={() => generatePDF()}
                     >
                       <PDF /> Generate PDF
                     </a>
@@ -103,19 +143,28 @@ export default function Assignedorders() {
               <div class="table-filter">
                 <div class="row">
                   <div class="col-sm-3">
-                    <h5>Order Count : {orders.length}</h5>
+                    
                   </div>
                   <div class="col-sm-9">
                     <div class="filter-group">
-                      <input
-                        class="form-control mr-sm-2"
+                    <div class="input-group">
+  <div class="form-outline">
+    <input class="form-control mr-sm-2"
                         type="search"
-                        placeholder="Search"
+                        placeholder="Product/Status"
                         aria-label="Search"
                         onChange={(e) => {
-                          setsearchTerm(e.target.value);
-                        }}
-                      />
+                          setProduct(e.target.value) || setStatus(e.target.value);
+                        }} />
+  </div>
+  <button type="button" class="btn btn-primary" onClick={filter}>
+    Filter
+  </button>
+  </div>
+
+
+
+                      
                     </div>
                   </div>
                 </div>
@@ -155,27 +204,25 @@ export default function Assignedorders() {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders
-                    .filter((val) => {
-                      if (searchTerm === "") {
-                        return val;
-                      } else if (
-                        val.date
-                          .toLowerCase()
-                          .includes(searchTerm.toLowerCase()) ||
-                        val.product
-                          .toLowerCase()
-                          .includes(searchTerm.toLowerCase()) ||
-                        val.status
-                        .toLowerCase()
-                          .includes(searchTerm.toLowerCase()) 
-                        // val.qty
-                        //   .toLowerCase()
-                        //   .includes(searchTerm.toLowerCase())
-                      ) {
-                        return val;
-                      }
-                    })
+                  {Aorders.filter(val => {
+                                if (!searchClick) {
+                                    return val;
+                                }
+                                else if(Product.length === 0 || Status.length === 0) {
+                                    return val;
+                                }
+                                else if(Product.length !== 0 || Status.length !== 0) {
+                                    return val.product.toLowerCase().includes(Product.toLowerCase()) || val.status.toLowerCase().includes(Status.toLowerCase())
+                                }
+                                else {
+                                    if (Product) {
+                                        return val.product.toLowerCase().includes(Product.toLowerCase())
+                                    }
+                                    if (Status) {
+                                      return val.status.toLowerCase().includes(Status.toLowerCase())
+                                  }
+                                }
+                            })
                     .map(function (f) {
                       return (
                         <tr>
