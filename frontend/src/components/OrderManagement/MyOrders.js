@@ -14,10 +14,10 @@ import Delete from "@material-ui/icons/DeleteForeverRounded";
 export default function MyOrders() {
 
     const [orders,setOrders]=useState([])
-    const [orderId,setOrderId]=useState("")
-    const [date,setDate]=useState("")
+    const [status,setStatus]=useState("")
+    
     const [product,setProduct]=useState("")
-    const [filterClicked, setFilterClicked] = useState(false);
+    const [searchClick, setSearchClick] = useState(false);
 
     const deleteOrder=(id) =>{
        
@@ -47,8 +47,40 @@ export default function MyOrders() {
           });
     
         }
+
+        const getFiltersForPDF = () => {
+            let inventories = [];
+        
+            orders.forEach((val) => {
+              if (!searchClick) {
+                inventories.push(val)
+              } else if (
+                product.length === 0 && status.length === 0
+              ) {
+                inventories.push(val);
+              } else if (
+                product.length !== 0 && status.length !== 0
+              ) {
+                  val.product.toLowerCase().includes(product.toLowerCase()) ? inventories.push(val) : doNothing()
+                  val.status.toLowerCase().includes(status.toLowerCase()) ? inventories.push(val) : doNothing()
+              } else {
+                if (product) {
+                  val.product.toLowerCase().includes(product.toLowerCase()) ? inventories.push(val) : doNothing()
+                }
+                if (status) {
+                  val.status.toLowerCase().includes(status.toLowerCase())? inventories.push(val): doNothing()
+                }
+              }
+            });
+            return inventories;
+        };
+
+        function doNothing() {
     
-        const generatePDF = (tickets) => {
+        }
+    
+        const generatePDF = () => {
+            const pdfOrders=getFiltersForPDF();            
             const doc = new jspdf();
             const date = Date().split(" ");
             const dateStr = date[1] + "-" + date[2] + "-" + date[3];
@@ -63,7 +95,7 @@ export default function MyOrders() {
             ];
             const tableRows = [];
         
-            tickets.map((ticket) => {
+            pdfOrders.map((ticket) => {
               const ticketData = [
                 ticket.OrderNo,
                 ticket.date,
@@ -86,10 +118,11 @@ export default function MyOrders() {
             doc.save(`My_Orders_Details_Report.pdf`);
           };
 
-        function filter(e) {
+          function filter(e) {
             e.preventDefault();
-            setFilterClicked(true);
+            setSearchClick(true);
         }
+    
 
     useEffect(()=>{
         function getorders(){
@@ -110,20 +143,16 @@ export default function MyOrders() {
                 <h1 className="mx-5 text-body mb-5 pt-5">My Orders</h1>
                 
                 <div className="shadow-lg p-3 mb-5 mx-5 bg-body rounded fs-5">
-                    <form>
-                        <input className="rounded-pill ps-2 mx-2 fs-5" type="text" placeholder="Search Order No"
-                        onChange={(e) => {
-                            setOrderId(e.target.value);
-                        }}></input>
-                        
-                        <input className="rounded-pill ps-2 mx-5" type="date" placeholder="Order Date"
-                        onChange={(e) => {
-                            setDate(e.target.value);
-                        }}></input>
-                        <input className="rounded-pill ps-2 mx-5" type="text" placeholder="Product"
+                    <form>     
+                    <input className="rounded-pill ps-2 mx-5" type="text" placeholder="Search Product"
                         onChange={(e) => {
                             setProduct(e.target.value);
                         }}></input>
+                        <input className="rounded-pill ps-2 mx-2 fs-5" type="text" placeholder="Search Status"
+                        onChange={(e) => {
+                            setStatus(e.target.value);
+                        }}></input>
+
                         <button type="submit" onClick={filter} className="btn btn-primary rounded mx-5 px-5">FILTER</button>
                     </form>
                 </div>
@@ -139,20 +168,23 @@ export default function MyOrders() {
                         </tr>
                     </thead>
                     <tbody>
-                        {
+                    {
                             orders.filter(val => {
-                                if(!filterClicked) {
+                                if (!searchClick) {
                                     return val;
                                 }
+                                else if(product.length === 0 && status.length === 0) {
+                                    return val;
+                                }
+                                else if(product.length !== 0 && status.length !== 0) {
+                                    return val.product.toLowerCase().includes(product.toLowerCase()) && val.status.toLowerCase().includes(status.toLowerCase())
+                                }
                                 else {
-                                    if (orderId) {
-                                        return val.orderId == orderId
-                                    }
-                                    if (date) {
-                                        return val.date== date
-                                    }
                                     if (product) {
-                                        return val.product == product
+                                        return val.product.toLowerCase().includes(product.toLowerCase())
+                                    }
+                                    if (status) {
+                                        return val.status.toLowerCase().includes(status.toLowerCase())
                                     }
                                 }
                             }).map(function (f,index){
@@ -183,7 +215,7 @@ export default function MyOrders() {
                 </table>
                 <div className="row justify-content-end">
                     <div className="col-4">
-                        <button className="btn btn-success rounded" onClick={() => generatePDF(orders)}>GENERATE REPORT</button>
+                        <button className="btn btn-success rounded" onClick={() => generatePDF()}>GENERATE REPORT</button>
                     </div>
                 </div>
             </div>
