@@ -6,7 +6,7 @@ export default function InvManagerNav() {
     return (
         <>
             <div className="sidenav">
-                <img className="rounded mx-auto d-block img-fluid mt-2 w-75 mb-lg-4 pb-lg-2" src={require("../../res/images/logo5.png")} alt="logo"></img>
+                <img className="rounded mx-auto d-block img-fluid mt-2 w-75 mb-lg-4 pb-lg-2" src={require("../navbars/logo.png")} alt="logo"></img>
                 <a href="">Home</a>
                 <a href="">About Us</a>
                 <a href="/allProducts">Products</a>

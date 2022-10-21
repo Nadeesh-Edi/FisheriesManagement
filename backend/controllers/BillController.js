@@ -32,4 +32,9 @@ const getBill=(async(req,res)=>{
         console.log(err);
     })
 })
-export {saveBill,getAll,getBill};
+const getLastBill = (async (req, res) => {
+    const lastBill = await Bill.findOne({})
+    .sort({ _id: -1 })
+  res.json(lastBill)
+})
+export {saveBill,getAll,getBill,getLastBill};

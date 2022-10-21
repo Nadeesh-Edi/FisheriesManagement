@@ -1,103 +1,58 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "../../res/css/OrderManagement.css";
 import OrderNav from "../navbars/OrderNav.js";
 import "../../res/css/inv-pages.css"
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function AllProducts() {
+  const [data, setData] = useState([]);
+  const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:9000/product/getAll")
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err, "it has an error"));
+  });
     return (
         <>
         <OrderNav/>
         <div className="page">
         <div className="shadow-lg p-3 mb-5 mx-5 bg-body rounded">
                     <form>
-                        <input className="rounded-pill ps-2 mx-5" type="text" placeholder="Search Products"></input>
+                        <input className="rounded-pill ps-2 mx-5" type="text" placeholder="Search Products"
+                          onChange={(e) => setSearch(e.target.value)}></input>
                         </form>
         </div>
             <div class="cards">
-  <div class="card">
-    <img class="card__image" src={require("../../res/images/Fish/fish1.jpeg")} alt=""></img>
-    <div class="card__content">
+  
+  {data.filter((singleData) => {
+                return search.toLowerCase() === ''
+                  ? singleData
+                  : singleData.name.toLowerCase().includes(search);
+              }).map((singleData) => {
+        const base64String = btoa(
+          String.fromCharCode(...new Uint8Array(singleData.img.data.data))
+        );
+        return<div className="card"><img className="card__image" src={`data:image/jpeg;base64,${base64String}`} />
+        <div class="card__content">
       <p >
-      <a style={{fontSize:"22px",paddingLeft:"0px"}}  href="/viewproduct" class="card__link">Thalapath(small)</a>
+      <Link to={"/viewproduct/"+singleData._id}><a style={{fontSize:"22px",paddingLeft:"0px"}}  class="card__link">{singleData.name}</a></Link>
       </p>
-      <p style={{fontSize:'14px'}}>
+      <p style={{fontSize:'14px',paddingLeft:"16px"}}>
         per 1kg
       </p>
+      </div>
+      <div class="card__info">
+    <p style={{color:'red',fontSize:'22px',paddingLeft:"16px"}}>{singleData.price} LKR</p>
     </div>
-    <div class="card__info">
-    <p style={{color:'red',fontSize:'22px'}}>2900.00 LKR</p>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card__image" src={require("../../res/images/Fish/fish2.jpeg")} alt=""></img>
-    <div class="card__content">
-      <p >
-      <a style={{fontSize:"22px",paddingLeft:"0px"}} href="./" class="card__link">Barumundi</a>
-      </p>
-      <p style={{fontSize:'14px'}}>
-        per 1kg
-      </p>
-    </div>
-    <div class="card__info">
-    <p style={{color:'red',fontSize:'22px'}}>2220.00 LKR</p>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card__image" src={require("../../res/images/Fish/fish3.jpeg")} alt=""></img>
-    <div class="card__content">
-      <p >
-      <a style={{fontSize:"22px",paddingLeft:"0px"}} href="./" class="card__link">Linna</a>
-      </p>
-      <p style={{fontSize:'14px'}}>
-        per 1kg
-      </p>
-    </div>
-    <div class="card__info">
-    <p style={{color:'red',fontSize:'22px'}}>1495.00 LKR</p>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card__image" src={require("../../res/images/Fish/fish4.jpeg")} alt=""></img>
-    <div class="card__content">
-      <p >
-      <a style={{fontSize:"22px",paddingLeft:"0px"}} href="./" class="card__link">Paraw</a>
-      </p>
-      <p style={{fontSize:'14px'}}>
-        per 1kg
-      </p>
-    </div>
-    <div class="card__info">
-    <p style={{color:'red',fontSize:'22px'}}>3840.00 LKR</p>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card__image" src={require("../../res/images/Fish/fish5.jpeg")} alt=""></img>
-    <div class="card__content">
-      <p >
-      <a style={{fontSize:"22px",paddingLeft:"0px"}} href="./" class="card__link">Tuna Fish</a>
-      </p>
-      <p style={{fontSize:'14px'}}>
-        per 1kg
-      </p>
-    </div>
-    <div class="card__info">
-    <p style={{color:'red',fontSize:'22px'}}>2880.00 LKR</p>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card__image" src={require("../../res/images/Fish/fish6.jpeg")} alt=""></img>
-    <div class="card__content">
-      <p >
-      <a style={{fontSize:"22px",paddingLeft:"0px"}} href="./" class="card__link">Thalapath(Koppara)</a>
-      </p>
-      <p style={{fontSize:'14px'}}>
-        per 1kg
-      </p>
-    </div>
-    <div class="card__info">
-    <p style={{color:'red',fontSize:'22px'}}>3560.00 LKR</p>
-    </div>
-  </div>
+      </div>
+      })}
+  
+
+  
+  
 </div>
 </div>
         </>

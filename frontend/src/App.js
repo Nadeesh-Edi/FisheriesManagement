@@ -36,7 +36,7 @@ function App() {
           <Route path="/allAssigned" element={<AllAssigned />} />
           <Route path="/bownerdashboard" element={<BODashboard />} />
           <Route path="/allProducts" element={<AllProducts />} />
-          <Route path="/viewproduct" element={<ViewProduct />} />
+          <Route path="/viewproduct/:id" element={<ViewProduct />} />
           <Route path="/billproduct" element={<BillDetails />} />
           <Route path="/myorders" element={<MyOrders />} />
           <Route path="/updateorder/:id" element={<UpdateOrder />} />
