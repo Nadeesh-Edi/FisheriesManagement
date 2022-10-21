@@ -61,9 +61,10 @@ export default function ViewOrderDetails() {
       .put(`http://localhost:9000/order/updateStatus/${id}`, {
         status: status,
       })
-      .then((res) => {
-        //dialog
-      })
+      .then(function () {
+          window.location.href = "/assignedorders";
+        })
+      
       .catch((error) => {
         console.log(error);
       });
@@ -83,9 +84,9 @@ export default function ViewOrderDetails() {
             </h1>
             <br />
 
-            <table className="table table-bordered">
-              <table className="table table-hover">
-                <thead>
+            <div style={{ overflowX: "auto" }}>
+                <table className="table table-hover">
+                  <thead>
                   <tr class="table-primary">
                     <th>
                       <center>Specifications</center>
@@ -178,7 +179,7 @@ export default function ViewOrderDetails() {
                   </tr>
                 </tbody>
               </table>
-            </table>
+            </div>
 
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
               <center>
