@@ -4,6 +4,7 @@ import OrderNav from "../navbars/OrderNav.js";
 import "../../res/css/inv-pages.css"
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import swal from "sweetalert";
 
 export default function UpdateOrder() {
     const { id } = useParams();
@@ -47,13 +48,20 @@ export default function UpdateOrder() {
             Email,
             Address
         };
-        axios.put(`http://localhost:9000/order/updateOrder/${id}`,editOrder).then(()=>{
-            alert("Successfully Updated");
-        }).catch((err)=>{
-            alert(err);
-        }).then(()=>{
-            window.location.href="/myorders"
-        })
+        axios.put(`http://localhost:9000/order/updateOrder/${id}`,editOrder).then((willReg) => {
+            if (willReg) {
+              swal({
+                title: "Success",
+                text: "Order Successfully Updated",
+                icon: "success",
+                type: "success",
+              }).then(function () {
+                window.location.href = "/myorders";
+              });
+            } else {
+              swal("Order Failed!");
+            }
+          });
 
     }
     
