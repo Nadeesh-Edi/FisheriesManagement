@@ -2,6 +2,7 @@ import asyncHandler from "express-async-handler";
 import express from "express";
 import Inventories from "../models/inventory.model.js";
 import BuyerRequests from "../models/buyerRequest.model.js";
+import Users from "../models/UserModel.js";
 import { ObjectId } from "mongodb";
 import orderDet from "../models/OrderModel.js";
 import AssignedInventories from "../models/assignedInventory.js";
@@ -114,7 +115,7 @@ const createAssignedList = asyncHandler(async (req, res) => {
 
   const assign = new AssignedInventories({
     inventory: inventoryList,
-    order,
+    order: order,
   });
 
   try {
@@ -186,8 +187,6 @@ const removeAssignedInv = asyncHandler(async (req,res) => {
   }
 })
 
-
-
 // Delete Inventory
 const deleteInventory = asyncHandler(async (req, res) => {
   const id = req.params.id;
@@ -199,6 +198,48 @@ const deleteInventory = asyncHandler(async (req, res) => {
     res.status(400);
   }
 });
+
+// Login
+const loginUser = asyncHandler(async (req,res) => {
+  const {username, password} = req.body;
+
+  try {
+    Users.findOne({ username:username, password:password }).then((resp) => {
+      res.json(resp)
+    }).catch((err) => {
+      res.status(400)
+    })
+  } catch {
+    res.status(400);
+  }
+})
+
+// Register
+const register = asyncHandler(async (req,res) => {
+  const {username, password, name, type} = req.body;
+
+  const userReg = new Users({
+    username: username,
+    password: password,
+    name: name,
+    type: type
+  })
+
+  console.log(userReg)
+
+  try {
+    user
+      .save()
+      .then(() => {
+        res.status(201).json(user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } catch {
+    res.status(400);
+  }
+})
 
 export {
   getInventory,
@@ -214,4 +255,6 @@ export {
   deleteAssigned,
   removeAssignedInv,
   editAssigned,
+  loginUser,
+  register,
 };

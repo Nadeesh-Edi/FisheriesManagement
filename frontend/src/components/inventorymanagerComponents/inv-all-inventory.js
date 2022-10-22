@@ -27,9 +27,9 @@ export default function ViewAllInventory() {
   }
 
   function getDate(date) {
-    const fullDate = date.toString().trim().split(/\s+/)
+    const fullDate = date.toString().trim().split('T')
 
-    return `${fullDate[1]} ${fullDate[2]} ${fullDate[3]}`
+    return `${fullDate[0]}`
   }
 
   const getFiltersForPDF = () => {
@@ -155,7 +155,7 @@ export default function ViewAllInventory() {
             <input
               className="rounded-pill ps-2 mx-2 fs-5"
               type="text"
-              placeholder="Search Boat Id"
+              placeholder="Search Boat Name"
               onChange={(e) => {
                 setBoatId(e.target.value);
               }}
@@ -189,7 +189,7 @@ export default function ViewAllInventory() {
           <thead>
             <tr className="table-dark fs-6">
               <th>
-                <center>BOAT ID</center>
+                <center>BOAT NAME</center>
               </th>
               <th>
                 <center>OWNER NAME</center>
@@ -221,7 +221,7 @@ export default function ViewAllInventory() {
                   (fishType.length !== 0) & (date.length !== 0)
                 ) {
                   return (
-                    val.boatId.toLowerCase().includes(boatId.toLowerCase()) &&
+                    val.boatName.toLowerCase().includes(boatId.toLowerCase()) &&
                     val.fishType
                       .toLowerCase()
                       .includes(fishType.toLowerCase()) &&
@@ -229,7 +229,7 @@ export default function ViewAllInventory() {
                   );
                 } else {
                   if (boatId) {
-                    return val.boatId
+                    return val.boatName
                       .toLowerCase()
                       .includes(boatId.toLowerCase());
                   }
@@ -249,7 +249,7 @@ export default function ViewAllInventory() {
                 return (
                   <tr>
                     <td>
-                      <center> {f.boatId} </center>
+                      <center> {f.boatName} </center>
                     </td>
                     <td>
                       <center> {f.owner} </center>

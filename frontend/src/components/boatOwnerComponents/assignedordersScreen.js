@@ -45,6 +45,12 @@ export default function Assignedorders() {
     return orders;
   };
 
+  function getDate(date) {
+    const fullDate = date.toString().trim().split('T')
+
+    return `${fullDate[0]}`
+  }
+
   function doNothing() {
     
   }
@@ -231,7 +237,7 @@ export default function Assignedorders() {
                             <center> {f.OrderNo} </center>
                           </td>
                           <td>
-                            <center> {f.date} </center>
+                            <center> {getDate(f.date)} </center>
                           </td>
                           <td>
                             <center> {f.Name} </center>

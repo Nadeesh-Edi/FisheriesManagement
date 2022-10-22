@@ -27,7 +27,7 @@ export default function AssignInvForRequest() {
             setAssignList(res.data);
             setAssignInv(res.data.inventory);
         }).catch(err => {
-            alert(err);
+            // alert(err);
         })
     }
 
@@ -43,13 +43,20 @@ export default function AssignInvForRequest() {
     function postAssigned() {
         const assign = {
             inventoryList: addedInv,
+            order: request
         }
         axios.post('http://localhost:9000/api/invManager/createAssigned', assign).then((res) => {
             window.location.href='/allBuyerRequests'
         }).catch(err => {
-            alert(err)
+            // alert(err)
         })
     }
+
+    function getDate(date) {
+        const fullDate = date.toString().trim().split('T')
+    
+        return `${fullDate[0]}`
+      }
 
     useEffect(() => {
         getAssignedForReq();
@@ -111,7 +118,7 @@ export default function AssignInvForRequest() {
                                             }).map(function(f) {
                                                 return <tr>
                                                     <td ><center> {f.owner} </center></td>
-                                                    <td ><center> {f.inventoryDate} </center></td>
+                                                    <td ><center> {getDate(f.inventoryDate)} </center></td>
                                                     <td ><center> {f.fishType} </center></td>
                                                     <td ><center> {assignList.createdAt} </center></td>
                                                     <td ><center> {assignList.order.qty} </center></td>

@@ -7,6 +7,7 @@ import Dashboard from "./components/inventorymanagerComponents/inv-dashboard";
 import ViewAllInventory from "./components/inventorymanagerComponents/inv-all-inventory";
 import BuyerRequests from "./components/inventorymanagerComponents/inv-buyer-requests";
 import AssignInvForRequest from "./components/inventorymanagerComponents/assign-inv-for-buyer";
+import LoginPage from "./components/LoginPage";
 
 import BODashboard from "./components/boatOwnerComponents/dashboardScreen";
 import AllProducts from "./components/OrderManagement/AllProducts";
@@ -48,6 +49,7 @@ function App() {
           <Route path="/updateinventory" element={<UpdateInventory />} />
           <Route path="/assignedorders" element={<Assignedorders />} />
           <Route path="/vieworderdetails/:id" element={<ViewOrderDetails />} />
+          <Route path="/" element={<LoginPage />} />
         </Routes>
       </Router>
   );

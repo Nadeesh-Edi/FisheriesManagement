@@ -14,7 +14,9 @@ import {
   getAssignedByReqId,
   deleteAssigned,
   removeAssignedInv,
-  editAssigned
+  editAssigned,
+  loginUser,
+  register,
 } from "../controllers/inventoryManager.controller.js";
 
 router.get("/getAllInventory", getInventory);
@@ -30,5 +32,7 @@ router.get('/getAssignedByReq/:id', getAssignedByReqId);
 router.delete('/deleteAssigned/:id', deleteAssigned);
 router.put('/removeAssignedInv', removeAssignedInv);
 router.put('/editAssigned/:id', editAssigned);
+router.post('/login', loginUser);
+router.post('/register', register);
 
 export default router;
