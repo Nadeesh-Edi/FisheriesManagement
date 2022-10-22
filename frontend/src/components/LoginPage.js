@@ -47,14 +47,14 @@ export default function LoginPage() {
                   class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4"
                   style={{color: '#709085'}}
                 ></div>
-                <img src="../res/images/logo5.png" />
+                {/* <img src="../res/images/logo5.png" /> */}
               </div>
 
               <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
                 <form style={{width: '23rem'}}>
-                  <h3 class="fw-normal mb-3 pb-3">
+                  <h1 class="fw-normal mb-3 pb-3 ">
                     Log in
-                  </h3>
+                  </h1>
 
                   <div class="form-outline mb-4">
                     <input
