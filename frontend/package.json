@@ -1,5 +1,6 @@
 {
-  "name": "fisheries",
+  "name": "frontend",
+  "proxy": "http://127.0.0.1:5000",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,14 +17,19 @@
     "react-bootstrap": "^1.6.6",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.36.1",
+    "react-markdown": "^6.0.1",
     "react-redux": "^8.0.2",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-tiny-popover": "^7.1.0",
+    "react-to-print": "^2.14.7",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.1.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
